@@ -1,17 +1,16 @@
 .register-form__id-message,
 .register-form__password-message,
 .register-form__email-message,
-.register-form__nickname-message {
+.register-form__nickname-message,
+.register-form__submit-message {
 	font-weight: bold;
 	font-size: small;
 }
 
-.available,
-.password-match {
+.available {
 	color: blue;
 }
 
-.not-available,
-.password-unmatch {
+.not-available {
 	color: red;
 }

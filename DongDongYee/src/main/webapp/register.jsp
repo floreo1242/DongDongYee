@@ -41,7 +41,8 @@
 			<button class="register-form__button" id="checkNicknameButton" type="button">중복확인</button>
 		</div>
 		<div class="register-form__nickname-message"></div>
-		<input type="submit" id="submitButton" value="가입하기" disabled>
+		<input type="submit" id="submitButton" value="가입하기">
+		<div class="register-form__submit-message"></div>
 	</form>
 	<%--Todo: include footer--%>
 </body>
