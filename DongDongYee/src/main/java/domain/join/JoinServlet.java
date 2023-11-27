@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/JoinServlet")
+@WebServlet("/domain.join.JoinServlet")
 public class JoinServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

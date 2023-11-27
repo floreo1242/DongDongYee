@@ -5,28 +5,28 @@
          version="4.0">
     <servlet>
         <servlet-name>CheckIdServlet</servlet-name>
-        <servlet-class>Controller.CheckIdServlet</servlet-class>
+        <servlet-class>domain.join.CheckIdServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckIdServlet</servlet-name>
-        <url-pattern>/Controller.CheckIdServlet</url-pattern>
+        <url-pattern>/domain.join.CheckIdServlet</url-pattern>
     </servlet-mapping>
     
     <servlet>
         <servlet-name>CheckEmailServlet</servlet-name>
-        <servlet-class>Controller.CheckEmailServlet</servlet-class>
+        <servlet-class>domain.join.CheckEmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
-        <url-pattern>/Controller.CheckEmailServlet</url-pattern>
+        <url-pattern>/domain.join.CheckEmailServlet</url-pattern>
     </servlet-mapping>
     
     <servlet>
         <servlet-name>CheckNicknameServlet</servlet-name>
-        <servlet-class>Controller.CheckNicknameServlet</servlet-class>
+        <servlet-class>domain.join.CheckNicknameServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckNicknameServlet</servlet-name>
-        <url-pattern>/Controller.CheckNicknameServlet</url-pattern>
+        <url-pattern>/domain.join.CheckNicknameServlet</url-pattern>
     </servlet-mapping>
 </web-app>
