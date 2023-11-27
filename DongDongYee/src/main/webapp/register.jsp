@@ -12,7 +12,7 @@
 <body>
 	<%--Todo: include header--%>
 	<div class="form-wrapper">
-		<form class="register-form" action="/Test" method="post">
+		<form class="register-form" action="/JoinServlet" method="post">
 			<h2 class="register-title">회원가입</h2>
 			<p>아래 내용을 모두 적어주세요 <br> 인증 절차까지 완료해야 가입이 완료됩니다</p>
 			<label class="register-form__label" for="id">아이디</label>
