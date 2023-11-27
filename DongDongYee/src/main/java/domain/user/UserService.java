@@ -15,7 +15,7 @@ public class UserService {
             String dbURL = "jdbc:mysql://localhost:3306/dongdongdb"; //mySQL 서버의 BBS DB 접근 경로
             String dbID = "dong"; //계정
             String dbPassword = "1234"; //비밀번호
-            Class.forName("com.mysql.jdbc.Driver"); //mysql에 접속을 도와주는 라이브러리
+            Class.forName("com.mysql.cj.jdbc.Driver"); //mysql에 접속을 도와주는 라이브러리
             conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,21 +64,21 @@ public class UserService {
             ResultSet rsName = checkStmt.executeQuery();
             if (rsName.next()) {
                 if (rsName.getInt(1) > 0) {
-                    return -1; // 중복되면 -1 반환
+                    return 1; // 중복되면 -1 반환
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             return -2; // DB 오류
         }
-        return 1;
+        return -1;
     }
 
     public int join(User user) {
         //등록
-        String SQL = "INSERT INTO DD_USER VALUES(?, ?, ?, ?)";
+        String joinSQL = "INSERT INTO DD_USER VALUES(?, ?, ?, ?)";
         try {
-            pstmt = conn.prepareStatement(SQL);
+            pstmt = conn.prepareStatement(joinSQL);
             pstmt.setString(1, user.getUserID());
             pstmt.setString(2, user.getUserPassword());
             pstmt.setString(3, user.getUserEmail());
