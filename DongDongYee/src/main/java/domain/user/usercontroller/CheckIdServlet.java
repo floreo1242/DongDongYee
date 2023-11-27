@@ -1,4 +1,4 @@
-package Controller;
+package domain.user.usercontroller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Controller.CheckEmailServlet")
-public class CheckEmailServlet extends HttpServlet {
+@WebServlet("/domain.user.usercontroller.CheckIdServlet")
+public class CheckIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String email = request.getParameter("email");
+			String id = request.getParameter("id");
 
-			if (isEmailTaken(email)) {
+			if (isIdTaken(id)) {
 				response.getWriter().write("taken");
 			} else {
 				response.getWriter().write("available");
@@ -26,9 +26,9 @@ public class CheckEmailServlet extends HttpServlet {
 		}
 	}
 
-	private boolean isEmailTaken(String email) {
-		// 이메일 중복체크
-		return !email.equals("admin@gmail.com");
+	private boolean isIdTaken(String id) {
+		// 아이디 중복체크
+		return !id.equals("admin");
 //		return false;
 	}
 }

@@ -5,43 +5,43 @@
          version="4.0">
     <servlet>
         <servlet-name>CheckIdServlet</servlet-name>
-        <servlet-class>domain.join.CheckIdServlet</servlet-class>
+        <servlet-class>domain.user.usercontroller.CheckIdServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckIdServlet</servlet-name>
-        <url-pattern>/domain.join.CheckIdServlet</url-pattern>
-        <servlet-class>domain.join.CheckIdServlet</servlet-class>
+        <url-pattern>/domain.user.usercontroller.CheckIdServlet</url-pattern>
+        <servlet-class>domain.user.usercontroller.CheckIdServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckIdServlet</servlet-name>
-        <url-pattern>/domain.join.CheckIdServlet</url-pattern>
+        <url-pattern>/domain.user.usercontroller.CheckIdServlet</url-pattern>
     </servlet-mapping>
     
     <servlet>
         <servlet-name>CheckEmailServlet</servlet-name>
-        <servlet-class>domain.join.CheckEmailServlet</servlet-class>
+        <servlet-class>domain.user.usercontroller.CheckEmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
-        <url-pattern>/domain.join.CheckEmailServlet</url-pattern>
-        <servlet-class>domain.join.CheckEmailServlet</servlet-class>
+        <url-pattern>/domain.user.usercontroller.CheckEmailServlet</url-pattern>
+        <servlet-class>domain.user.usercontroller.CheckEmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
-        <url-pattern>/domain.join.CheckEmailServlet</url-pattern>
+        <url-pattern>/domain.user.usercontroller.CheckEmailServlet</url-pattern>
     </servlet-mapping>
     
     <servlet>
         <servlet-name>CheckNicknameServlet</servlet-name>
-        <servlet-class>domain.join.CheckNicknameServlet</servlet-class>
+        <servlet-class>domain.user.usercontroller.CheckNicknameServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckNicknameServlet</servlet-name>
-        <url-pattern>/domain.join.CheckNicknameServlet</url-pattern>
-        <servlet-class>domain.join.CheckNicknameServlet</servlet-class>
+        <url-pattern>/domain.user.usercontroller.CheckNicknameServlet</url-pattern>
+        <servlet-class>domain.user.usercontroller.CheckNicknameServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckNicknameServlet</servlet-name>
-        <url-pattern>/domain.join.CheckNicknameServlet</url-pattern>
+        <url-pattern>/domain.user.usercontroller.CheckNicknameServlet</url-pattern>
     </servlet-mapping>
 </web-app>
