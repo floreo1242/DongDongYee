@@ -10,6 +10,11 @@
     <servlet-mapping>
         <servlet-name>CheckIdServlet</servlet-name>
         <url-pattern>/domain.join.CheckIdServlet</url-pattern>
+        <servlet-class>domain.join.CheckIdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckIdServlet</servlet-name>
+        <url-pattern>/domain.join.CheckIdServlet</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -19,10 +24,20 @@
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
         <url-pattern>/domain.join.CheckEmailServlet</url-pattern>
+        <servlet-class>domain.join.CheckEmailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckEmailServlet</servlet-name>
+        <url-pattern>/domain.join.CheckEmailServlet</url-pattern>
     </servlet-mapping>
     
     <servlet>
         <servlet-name>CheckNicknameServlet</servlet-name>
+        <servlet-class>domain.join.CheckNicknameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckNicknameServlet</servlet-name>
+        <url-pattern>/domain.join.CheckNicknameServlet</url-pattern>
         <servlet-class>domain.join.CheckNicknameServlet</servlet-class>
     </servlet>
     <servlet-mapping>
