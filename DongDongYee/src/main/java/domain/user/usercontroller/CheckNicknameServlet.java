@@ -7,15 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.user.UserService;
+
 @WebServlet("/domain.user.usercontroller.CheckNicknameServlet")
 public class CheckNicknameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserService service = new UserService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String nickname = request.getParameter("nickname");
 
-			if (isEmailTaken(nickname)) {
+			if (service.isEmailTaken(nickname) == 1) {
 				response.getWriter().write("taken");
 			} else {
 				response.getWriter().write("available");
@@ -24,11 +27,5 @@ public class CheckNicknameServlet extends HttpServlet {
 			e.printStackTrace();
 			response.getWriter().write("error");
 		}
-	}
-
-	private boolean isEmailTaken(String nickname) {
-		// 닉네임 중복체크
-		return !nickname.equals("동동이");
-//		return false;
 	}
 }

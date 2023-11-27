@@ -7,15 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.user.UserService;
+
 @WebServlet("/domain.user.usercontroller.CheckEmailServlet")
 public class CheckEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserService service = new UserService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String email = request.getParameter("email");
 
-			if (isEmailTaken(email)) {
+			if (service.isEmailTaken(email) == 1) {
 				response.getWriter().write("taken");
 			} else {
 				response.getWriter().write("available");
@@ -24,11 +27,5 @@ public class CheckEmailServlet extends HttpServlet {
 			e.printStackTrace();
 			response.getWriter().write("error");
 		}
-	}
-
-	private boolean isEmailTaken(String email) {
-		// 이메일 중복체크
-		return !email.equals("admin@gmail.com");
-//		return false;
 	}
 }
