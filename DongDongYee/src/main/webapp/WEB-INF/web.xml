@@ -10,8 +10,7 @@
     <servlet-mapping>
         <servlet-name>CheckIdServlet</servlet-name>
         <url-pattern>/domain.user.usercontroller.CheckIdServlet</url-pattern>
-        <servlet-class>domain.user.usercontroller.CheckIdServlet</servlet-class>
-    </servlet>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckIdServlet</servlet-name>
         <url-pattern>/domain.user.usercontroller.CheckIdServlet</url-pattern>
@@ -24,8 +23,7 @@
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
         <url-pattern>/domain.user.usercontroller.CheckEmailServlet</url-pattern>
-        <servlet-class>domain.user.usercontroller.CheckEmailServlet</servlet-class>
-    </servlet>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
         <url-pattern>/domain.user.usercontroller.CheckEmailServlet</url-pattern>
@@ -38,8 +36,7 @@
     <servlet-mapping>
         <servlet-name>CheckNicknameServlet</servlet-name>
         <url-pattern>/domain.user.usercontroller.CheckNicknameServlet</url-pattern>
-        <servlet-class>domain.user.usercontroller.CheckNicknameServlet</servlet-class>
-    </servlet>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckNicknameServlet</servlet-name>
         <url-pattern>/domain.user.usercontroller.CheckNicknameServlet</url-pattern>
