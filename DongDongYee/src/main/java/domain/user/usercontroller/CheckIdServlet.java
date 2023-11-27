@@ -7,15 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.user.UserService;
+
 @WebServlet("/domain.user.usercontroller.CheckIdServlet")
 public class CheckIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserService service = new UserService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String id = request.getParameter("id");
 
-			if (isIdTaken(id)) {
+			if (service.isIdTaken(id) == 1) {
 				response.getWriter().write("taken");
 			} else {
 				response.getWriter().write("available");
@@ -24,11 +27,5 @@ public class CheckIdServlet extends HttpServlet {
 			e.printStackTrace();
 			response.getWriter().write("error");
 		}
-	}
-
-	private boolean isIdTaken(String id) {
-		// 아이디 중복체크
-		return !id.equals("admin");
-//		return false;
 	}
 }
