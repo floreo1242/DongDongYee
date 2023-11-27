@@ -1,4 +1,4 @@
-package Controller;
+package domain.join;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
