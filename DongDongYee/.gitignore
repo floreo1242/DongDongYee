@@ -70,5 +70,5 @@ local.properties
 .idea/
 out/
 *.iml
-lib/
+/lib/
 .DS_Store
