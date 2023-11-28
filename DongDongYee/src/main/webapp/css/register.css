@@ -57,6 +57,11 @@
 	padding: 8px;
 }
 
+.register-form__input[readonly] {
+	color: #787878;
+	background-color: lightgrey;
+}
+
 .register-form__button {
 	background-color: #18A0FB;
 	border-radius: 16px;

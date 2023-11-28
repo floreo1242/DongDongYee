@@ -5,7 +5,7 @@ function checkAvailability(url, data, successMessage, successClass, errorMessage
 		data: data,
 		success: function(response) {
 			if (response === "available") {
-				$(inputSelector).prop("disabled", true);
+				$(inputSelector).prop("readonly", true);
 				$(messageSelectot).text(successMessage).removeClass(errorClass).addClass(successClass);
 			} else {
 				$(inputSelector).val("");
