@@ -71,3 +71,4 @@ local.properties
 out/
 *.iml
 lib/
+.DS_Store
