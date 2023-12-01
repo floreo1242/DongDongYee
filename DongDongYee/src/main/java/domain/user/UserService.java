@@ -14,7 +14,7 @@ public class UserService {
         try {
             String dbURL = "jdbc:mysql://localhost:3306/dongdongdb"; //mySQL 서버의 BBS DB 접근 경로
             String dbID = "dong"; //계정
-            String dbPassword = "1234"; //비밀번호
+            String dbPassword = "0000"; //비밀번호
             Class.forName("com.mysql.cj.jdbc.Driver"); //mysql에 접속을 도와주는 라이브러리
             conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
         } catch (Exception e) {
