@@ -4,20 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/globals.css">
 <link rel="stylesheet" href="./css/Login.css">
 <title>로그인</title>
 </head>
 <body>
-
-<div class="navbar">
-  <h1>Logo</h1>
-  <div class="menu">Menu</div>
-  <div class="menu">Menu</div>
-  <div class="menu">Menu</div>
-  <div class="search">Search</div>
-</div>
-
 <div class="main-content">
+    <jsp:include page="Header.jsp"/>
     <div class="center">
     <h1>로그인</h1>
     <p>아이디와 비밀번호를 입력해주세요.</p>
@@ -34,12 +27,6 @@
 	  </form>
     </div>
 </div>
-
-<div class="footer">
-  <div class="additional-link">Logo</div>
-  <div class="additional-link">Additional Link</div>
-  <div class="additional-link">Additional Link</div>
-  <div class="copyright">© Your Company 2022. We love you!</div>
-</div>
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>
