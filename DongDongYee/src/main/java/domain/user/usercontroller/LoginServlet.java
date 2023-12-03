@@ -1,3 +1,6 @@
+package domain.user.usercontroller;
+
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import domain.user.*;
+
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    private UserService userService = new userService();
+    private UserService userService = new UserService();
 
     
     public LoginServlet() {

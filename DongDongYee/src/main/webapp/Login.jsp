@@ -21,7 +21,7 @@
     <div class="center">
     <h1>로그인</h1>
     <p>아이디와 비밀번호를 입력해주세요.</p>
-    <form action="login" method="post">
+    <form action="Login" method="post">
         <label for="UserID">아이디</label>
         <input type="text" id="UserID" name="UserID" placeholder="아이디를 입력해주세요"/>
         <br>
