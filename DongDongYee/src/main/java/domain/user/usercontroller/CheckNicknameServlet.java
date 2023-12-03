@@ -18,7 +18,7 @@ public class CheckNicknameServlet extends HttpServlet {
 		try {
 			String nickname = request.getParameter("nickname");
 
-			if (service.isEmailTaken(nickname) == 1) {
+			if (service.isNickNameTaken(nickname) == 1) {
 				response.getWriter().write("taken");
 			} else {
 				response.getWriter().write("available");
