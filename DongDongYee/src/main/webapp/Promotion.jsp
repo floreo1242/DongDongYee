@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="domain.promotion.PromotionListDTO" %>
+<%@ page import="domain.promotion.Promotion" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,12 +20,12 @@
     <div class="board">
         <div class="board__content">
             <%
-                List<PromotionListDTO> boardList = (List<PromotionListDTO>) request.getAttribute("boardList");
-                for (PromotionListDTO post : boardList) {
+                List<Promotion> boardList = (List<Promotion>) request.getAttribute("boardList");
+                for (Promotion post : boardList) {
                     out.print(post.getPromotionID() + "<br>");
                     out.print(post.getPromotionName() + "<br>");
                     out.print(post.getPromotionContents() + "<br>");
-                    out.print(post.getGetPromotionClub() + "<br>");
+                    out.print(post.getPromotionClub() + "<br>");
                 }
 
             %>
