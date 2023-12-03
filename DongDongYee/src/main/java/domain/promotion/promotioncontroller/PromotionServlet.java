@@ -1,8 +1,7 @@
 package domain.promotion.promotioncontroller;
 
-import domain.promotion.PromotionReadDTO;
+import domain.promotion.Promotion;
 import domain.promotion.PromotionService;
-import domain.promotion.PromotionPublishDTO;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -22,20 +21,20 @@ public class PromotionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-        PromotionReadDTO promotionReadDTO = new PromotionReadDTO(Long.parseLong(request.getParameter("promotionID")));
+        Promotion promotion = new Promotion(Long.parseLong(request.getParameter("promotionID")));
 //        TODO: service 구현 후 주석 제거
 //        service.read(post);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-        PromotionPublishDTO promotionPublishDTO = new PromotionPublishDTO();
+        Promotion promotion = new Promotion();
 //         TODO: promotionID 로직 구현
 //         post.setPromotionID();
-        promotionPublishDTO.setUserID(request.getParameter("userID"));
-        promotionPublishDTO.setPromotionName(request.getParameter("promotionName"));
-        promotionPublishDTO.setPromotionContents(request.getParameter("promotionContents"));
-        promotionPublishDTO.setPromotionClub(request.getParameter("promotionClub"));
+        promotion.setUserID(request.getParameter("userID"));
+        promotion.setPromotionName(request.getParameter("promotionName"));
+        promotion.setPromotionContents(request.getParameter("promotionContents"));
+        promotion.setPromotionClub(request.getParameter("promotionClub"));
 //        TODO: service 구현 후 주석 제거
 //        service.publish(post);
     }
