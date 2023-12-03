@@ -1,13 +1,20 @@
 package domain.promotion;
 
-public class PromotionPublishDTO {
+public class Promotion {
     private Long promotionID;
     private String userID;
     private String promotionName;
     private String promotionContents;
     private String promotionClub;
 
-    public PromotionPublishDTO() { }
+    public Promotion() { }
+    public Promotion(Long promotionID) { this.promotionID = promotionID; }
+    public Promotion(Long promotionID, String promotionName, String promotionContents, String promotionClub) {
+        this.promotionID = promotionID;
+        this.promotionName = promotionName;
+        this.promotionContents = promotionContents;
+        this.promotionClub = promotionClub;
+    }
 
     public Long getPromotionID() { return promotionID; }
     public void setPromotionID(Long promotionID) { this.promotionID = promotionID; }
