@@ -5,7 +5,7 @@ function checkAvailability(url, data, successMessage, successClass, errorMessage
 		data: data,
 		success: function(response) {
 			if (response === "available") {
-				$(inputSelector).prop("disabled", true);
+				$(inputSelector).prop("readonly", true);
 				$(messageSelectot).text(successMessage).removeClass(errorClass).addClass(successClass);
 			} else {
 				$(inputSelector).val("");
@@ -18,17 +18,17 @@ function checkAvailability(url, data, successMessage, successClass, errorMessage
 $(document).ready(function() {
 	$("#checkIdButton").click(function() {
 		let id = $("#id").val();
-		checkAvailability("http://localhost:8080/DongDongYee/CheckIdServlet", { id: id }, "아이디가 사용 가능합니다", "available", "해당 아이디는 이미 사용중입니다", "not-available", ".register-form__id-message", "#id");
+		checkAvailability("http://localhost:8080/domain.user.usercontroller.CheckIdServlet", { id: id }, "아이디가 사용 가능합니다", "available", "해당 아이디는 이미 사용중입니다", "not-available", ".register-form__id-message", "#id");
 	});
 
 	$("#checkEmailButton").click(function() {
 		let email = $("#email").val();
-		checkAvailability("http://localhost:8080/DongDongYee/CheckEmailServlet", { email: email }, "이메일이 사용 가능합니다", "available", "해당 이메일은 이미 사용중입니다", "not-available", ".register-form__email-message", "#email");
+		checkAvailability("http://localhost:8080/domain.user.usercontroller.CheckEmailServlet", { email: email }, "이메일이 사용 가능합니다", "available", "해당 이메일은 이미 사용중입니다", "not-available", ".register-form__email-message", "#email");
 	});
 
 	$("#checkNicknameButton").click(function() {
 		let nickname = $("#nickname").val();
-		checkAvailability("http://localhost:8080/DongDongYee/CheckNicknameServlet", { nickname: nickname }, "닉네임이 사용 가능합니다", "available", "해당 닉네임은 이미 사용중입니다", "not-available", ".register-form__nickname-message", "#nickname");
+		checkAvailability("http://localhost:8080/domain.user.usercontroller.CheckNicknameServlet", { nickname: nickname }, "닉네임이 사용 가능합니다", "available", "해당 닉네임은 이미 사용중입니다", "not-available", ".register-form__nickname-message", "#nickname");
 	});
 
 	$("#confirm-password").on("input", function() {
