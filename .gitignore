@@ -1,4 +1,5 @@
 /build/
+.gitignore
 
 ### Eclipse ###
 .metadata
@@ -67,7 +68,7 @@ local.properties
 .sts4-cache/
 
 # IntelliJ
-.idea/
+.idea/*
 out/
 *.iml
 /lib/
