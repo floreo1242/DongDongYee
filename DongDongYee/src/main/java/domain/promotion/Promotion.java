@@ -1,11 +1,15 @@
 package domain.promotion;
 
+import java.sql.Timestamp;
+
 public class Promotion {
     private Long promotionID;
     private String userID;
     private String promotionName;
     private String promotionContents;
     private String promotionClub;
+    private Timestamp promotionTime;
+    private String userNickname;
 
     public Promotion() { }
     public Promotion(Long promotionID) { this.promotionID = promotionID; }
@@ -26,4 +30,12 @@ public class Promotion {
     public void setPromotionContents(String promotionContents) { this.promotionContents = promotionContents; }
     public String getPromotionClub() { return promotionClub; }
     public void setPromotionClub(String promotionClub) { this.promotionClub = promotionClub; }
+
+    public Timestamp getPromotionTime() { return promotionTime; }
+
+    public void setPromotionTime(Timestamp promotionTime) { this.promotionTime = promotionTime; }
+
+    public String getUserNickname() { return userNickname; }
+
+    public void setUserNickname(String userNickname) { this.userNickname = userNickname; }
 }
