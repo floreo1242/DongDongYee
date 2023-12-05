@@ -4,31 +4,41 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/globals.css">
-    <link rel="stylesheet" href="css/Promotion.css">
+    <link rel="stylesheet" href="css/List.css">
     <title>홍보 게시판</title>
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
-<div class="board-wrapper">
-    <div class="board__header">
-        <button class="board__write">글작성</button>
-        <div class="board__search-wrapper">
-            <button class="board__search-button">Search</button>
-            <input type="search" class="board__search-input">
+<div class="list-wrapper">
+    <div class="list__header">
+        <button class="list__write">글작성</button>
+        <div class="list__search-wrapper">
+            <button class="list__search-button" onclick="">Search</button>
+            <input type="search" class="list__search-input">
         </div>
     </div>
-    <div class="board">
-        <div class="board__content">
-            <%
-                List<Promotion> boardList = (List<Promotion>) request.getAttribute("boardList");
-                for (Promotion post : boardList) {
-                    out.print(post.getPromotionID() + "<br>");
-                    out.print(post.getPromotionName() + "<br>");
-                    out.print(post.getPromotionContents() + "<br>");
-                    out.print(post.getPromotionClub() + "<br>");
-                }
-
-            %>
+    <div class="list">
+        <div class="list__content">
+            <ul>
+                <%
+                    List<Promotion> promotionList = (List<Promotion>) request.getAttribute("promotionList");
+                    for (Promotion promotion : promotionList) {
+                %>
+                <li>
+                    <div class="list__item">
+                        <div class="list__item__header">
+                            <a href="promotion?id=<%=promotion.getPromotionID()%>"><%=promotion.getPromotionName()%></a>
+                            <span><%=promotion.getPromotionClub()%></span>
+                        </div>
+                        <div class="list__item__content">
+                            <%=promotion.getPromotionContents()%>
+                        </div>
+                    </div>
+                </li>
+                <%
+                    }
+                %>
+            </ul>
         </div>
     </div>
 </div>
