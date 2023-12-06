@@ -1,34 +1,51 @@
 package domain.rating;
 
 public class Rating {
-	private long ratingId;  
-    private String userId;  
+	private long ratingID;  
+    private String userID;  
     private String ratingName;  
     private String ratingClub;  
     private String ratingPlay;  
     private String ratingGood;  
     private String ratingBad;
+    private String ratingTime;
 
-    public Rating() {
-    	
+    public void setRatingID(String RatingID) {
+    	this.ratingID=RatingID;
     }
-    
+
+    public void setUserID(String UserID) {
+    	this.userID=UserID;
+    }
+
     public void setRatingName(String RatingName) {
-    	ratingName=RatingName;
+    	this.ratingName=RatingName;
     }
     public void setRatingClub(String RatingClub) {
-    	ratingClub=RatingClub;
+    	this.ratingClub=RatingClub;
     }
     public void setRatingPlay(String RatingPlay) {
-    	ratingPlay=RatingPlay;
+    	this.ratingPlay=RatingPlay;
     }
     public void setRatingGood(String RatingGood) {
-    	ratingGood=RatingGood;
+    	this.ratingGood=RatingGood;
     }
     public void setRatingBad(String RatingBad) {
-    	ratingBad=RatingBad;
+    	this.ratingBad=RatingBad;
+    }
+
+     public void setRatingTime(String RatingTime) {
+    	this.ratingTime=RatingTime;
     }
     
+    public String getRatingID() {
+    	return ratingID;
+    }
+
+    public String getUserID() {
+    	return userID;
+    }
+
     public String getRatingName() {
     	return ratingName;
     }
@@ -48,6 +65,9 @@ public class Rating {
     public String getRatingBad() {
     	return ratingBad;
     }
-    
+
+    public String getRatingTime(){
+        return ratingTime;
+    }
   
 }
