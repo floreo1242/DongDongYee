@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         if (loginValid==1)  //db저장 값 user.getpassword
         {
             HttpSession session = request.getSession();
-            session.setAttribute("userId", userId);
+            session.setAttribute("userID", userId);
             response.sendRedirect("./webapp/welcome.jsp");
         }
         else if(loginValid==0){

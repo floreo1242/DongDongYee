@@ -1,5 +1,6 @@
 package domain.rating.ratingcontroller;
 
+import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,23 +9,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import domain.rating.*;
 import java.sql.*;
+import java.lang.Long;
+
 
 
 @WebServlet("/RatingPostServlet")
 public class RatingPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+ 	RatingService ratingService = new RatingService();
 
     public RatingPostServlet() {
         super();
-        // TODO Auto-generated constructor stub
-    }
+]    }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("text/html;charset=utf-8");
+
 		//db에 있는 rating 객체 모두를 배열로 반환하는 getRating함수
- 		RatingService ratingService = new RatingService();
-		ArrayList<Rating> ratingList=ratingService.getRatings();
+        ArrayList<Rating> ratingList = ratingService.getRatings();
 
         request.setAttribute("ratingList", ratingList);
         request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
