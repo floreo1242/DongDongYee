@@ -21,9 +21,13 @@ public class RatingDetailServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String ratingId = request.getParameter("ratingId");
-        Rating rating = new Rating();
-        request.setAttribute("rating", rating);
+		
+        //db에 있는 rating 객체 모두를 배열로 반환하는 getRating함수
+ 		RatingService ratingService = new RatingService();
+		ArrayList<Rating> ratingList=ratingService.getRatings();
+
+        request.setAttribute("ratingList", ratingList);
+
         request.getRequestDispatcher("/Rating_detail.jsp").forward(request, response);
 	}
 
