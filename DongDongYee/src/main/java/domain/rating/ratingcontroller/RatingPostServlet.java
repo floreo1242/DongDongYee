@@ -21,10 +21,14 @@ public class RatingPostServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			ArrayList<Rating> ratingList = new ArrayList<Rating>();
+		
+		//db에 있는 rating 객체 모두를 배열로 반환하는 getRating함수
+ 		RatingService ratingService = new RatingService();
+		ArrayList<Rating> ratingList=ratingService.getRatings();
+
         request.setAttribute("ratingList", ratingList);
         request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
-
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		  String ratingName = request.getParameter("RatingName");
@@ -41,6 +45,9 @@ public class RatingPostServlet extends HttpServlet {
 	      rating.setRatingGood(ratingGood);
 	      rating.setRatingBad(ratingBad);
 	      
+		  // 객체 rating에 설정된 변수들을 db에 저장해주는 기능을 하는 saveRating
+		  RatingService ratingService = new RatingService();
+    	  ratingService.saveRating(rating);
 
 	}
 }
