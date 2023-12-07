@@ -26,7 +26,9 @@
         <%if (sessionUserID.equals(promotion.getUserID())) {%>
         <div class="promotion-item__modify">
             <a href="promotionUpdate?id=<%=promotion.getPromotionID()%>">수정</a>
-            <a href="">삭제</a>
+            <a href="promotionDelete?id=<%=promotion.getPromotionID()%>"
+               onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+
         </div>
         <%}%>
     </div>
