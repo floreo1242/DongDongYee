@@ -27,9 +27,8 @@ public class PromotionListServlet extends HttpServlet {
         promotionList.add(new Promotion(2L, "제목", "내용", "동아리"));
         promotionList.add(new Promotion(3L, "제목", "내용", "동아리"));
         promotionList.add(new Promotion(4L, "제목", "내용", "동아리"));
-        int page = Integer.parseInt(request.getParameter("page"));
         // TODO: 게시글리스트 불러와서 boardList에 저장
         request.setAttribute("promotionList", promotionList);
-        request.getRequestDispatcher("Promotion.jsp?page=" + page).forward(request, response);
+        request.getRequestDispatcher("Promotion.jsp").forward(request, response);
     }
 }
