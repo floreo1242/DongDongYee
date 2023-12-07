@@ -9,10 +9,12 @@
 %>
 <html>
 <head>
+    <link href="./css/globals.css" type="text/css" rel="stylesheet">
     <title><%=promotion.getPromotionName()%>
     </title>
 </head>
 <body>
+<jsp:include page="Header.jsp"/>
 <div class="promotion-item__wrapper">
     <div class="promotion-item__title-bar">
         <h1 class="promotion-item__title"><%=promotion.getPromotionName()%>
@@ -67,5 +69,6 @@
         </div>
     </div>
 </div>
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>
