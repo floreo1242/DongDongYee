@@ -23,7 +23,7 @@
         <%=promotion.getUserNickname()%> | <%=promotion.getPromotionTime()%>
         <%if (sessionUserID.equals(promotion.getUserID())) {%>
         <div class="promotion-item__modify">
-            <a href="">수정</a>
+            <a href="promotionUpdate?id=<%=promotion.getPromotionID()%>">수정</a>
             <a href="">삭제</a>
         </div>
         <%}%>

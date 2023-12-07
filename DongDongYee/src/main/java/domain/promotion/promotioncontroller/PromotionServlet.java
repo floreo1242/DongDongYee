@@ -53,5 +53,6 @@ public class PromotionServlet extends HttpServlet {
         promotion.setPromotionClub(request.getParameter("promotionClub"));
 //        TODO: service 구현 후 주석 제거
 //        promotion = service.publish(promotion);
+        response.sendRedirect("promotion?id=" + promotion.getPromotionID());
     }
 }
