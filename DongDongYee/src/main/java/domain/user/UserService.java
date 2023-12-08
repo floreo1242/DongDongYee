@@ -1,6 +1,8 @@
 package domain.user;
 
+import domain.comment.Comment;
 import domain.promotion.Promotion;
+import domain.rating.Rating;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -231,5 +233,31 @@ public class UserService {
         }
 
         return promotions;
+    }
+
+    public List<Comment> getCommentsByUserId(String userId) {
+        List<Comment> comments = new ArrayList<>();
+        String sql = "SELECT * FROM DD_COMMENT WHERE UserID = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Comment comment = new Comment();
+                comment.setCommentID(rs.getLong("CommentID"));
+                comment.setUserID(rs.getString("UserID"));
+                comment.setPromotionID(rs.getLong("PromotionID"));
+                comment.setUserNickname(rs.getString("UserNickname"));
+                comment.setCommentContents(rs.getString("CommentContents"));
+                comment.setCommentTime(rs.getTimestamp("CommentTime"));
+
+                comments.add(comment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return comments;
     }
 }
