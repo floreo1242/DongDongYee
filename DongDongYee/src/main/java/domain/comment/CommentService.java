@@ -84,4 +84,14 @@ public class CommentService {
 
         return comments;
     }
+
+    public void delete(Long id) {
+        String sql = "DELETE FROM DD_Comment WHERE CommentID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
