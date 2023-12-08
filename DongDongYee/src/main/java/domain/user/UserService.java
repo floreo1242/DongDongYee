@@ -1,5 +1,7 @@
 package domain.user;
 
+import domain.promotion.Promotion;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -193,7 +195,7 @@ public class UserService {
             e.printStackTrace();
             return;
         }
-        
+
         String deletePromotionsSql = "DELETE FROM DD_Promotion WHERE UserID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(deletePromotionsSql)) {
             pstmt.setString(1, userId);
@@ -201,5 +203,33 @@ public class UserService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Promotion> getPromotionsByUserId(String userId) {
+        List<Promotion> promotions = new ArrayList<>();
+        String sql = "SELECT * FROM DD_Promotion WHERE UserID = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Promotion promotion = new Promotion();
+                // 각 필드를 설정합니다 (예시)
+                promotion.setPromotionID(rs.getLong("PromotionID"));
+                promotion.setUserID(rs.getString("UserID"));
+                promotion.setUserNickname(rs.getString("UserNickname"));
+                promotion.setPromotionName(rs.getString("PromotionName"));
+                promotion.setPromotionContents(rs.getString("PromotionContents"));
+                promotion.setPromotionClub(rs.getString("PromotionClub"));
+                promotion.setPromotionTime(rs.getTimestamp("PromotionTime"));
+
+                promotions.add(promotion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return promotions;
     }
 }
