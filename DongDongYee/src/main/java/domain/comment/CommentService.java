@@ -1,5 +1,6 @@
 package domain.comment;
 
+import domain.promotion.Promotion;
 import domain.user.UserService;
 
 import java.sql.Connection;
@@ -89,6 +90,16 @@ public class CommentService {
         String sql = "DELETE FROM DD_Comment WHERE CommentID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Comment comment) {
+        String sql = "UPDATE DD_Comment SET CommentContents=? WHERE CommentID=?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, comment.getCommentContents());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
