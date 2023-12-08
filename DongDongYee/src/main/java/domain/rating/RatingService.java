@@ -1,5 +1,6 @@
 package domain.rating;
 
+import domain.promotion.Promotion;
 import domain.user.UserService;
 
 import java.sql.Connection;
@@ -54,4 +55,38 @@ public class RatingService {
         rating.setRatingBad(rs.getString("RatingBad"));
         rating.setRatingTime(rs.getTimestamp("RatingTime"));
     }
+
+    public Rating publish(Rating rating) {
+        String nickname = userService.findUserNicknameByUserId(rating.getUserID());
+        String sql = "INSERT INTO DD_RATING (UserID, UserNickname, RatingName, RatingClub, RatingPlay, RatingGood, RatingBad) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, rating.getUserID());
+            pstmt.setString(2, nickname);
+            pstmt.setString(3, rating.getRatingName());
+            pstmt.setString(4, rating.getRatingClub());
+            pstmt.setString(5, rating.getRatingPlay());
+            pstmt.setString(6, rating.getRatingGood());
+            pstmt.setString(7, rating.getRatingBad());
+            pstmt.executeUpdate();
+
+            ResultSet generatedKeys = pstmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                rating.setRatingID(generatedKeys.getLong(1));
+            }
+
+            sql = "SELECT RatingTime FROM DD_RATING WHERE RatingID = ?";
+            PreparedStatement pstmt2 = conn.prepareStatement(sql);
+            pstmt2.setLong(1, rating.getRatingID());
+            rs = pstmt2.executeQuery();
+            if (rs.next()) {
+                rating.setRatingTime(rs.getTimestamp("RatingTime"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rating;
+    }
+
+    
 }
