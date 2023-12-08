@@ -135,4 +135,33 @@ public class RatingService {
             e.printStackTrace();
         }
     }
+
+    public List<Rating> getRatingsByPromotionName(String promotionName) {
+        List<Rating> ratings = new ArrayList<>();
+        String sql = "SELECT * FROM DD_RATING WHERE RatingClub = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, promotionName);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Rating rating = new Rating();
+                rating.setRatingID(rs.getLong("RatingID"));
+                rating.setUserID(rs.getString("UserID"));
+                rating.setUserNickname(rs.getString("UserNickname"));
+                rating.setRatingName(rs.getString("RatingName"));
+                rating.setRatingClub(rs.getString("RatingClub"));
+                rating.setRatingPlay(rs.getString("RatingPlay"));
+                rating.setRatingGood(rs.getString("RatingGood"));
+                rating.setRatingBad(rs.getString("RatingBad"));
+                rating.setRatingTime(rs.getTimestamp("RatingTime"));
+
+                ratings.add(rating);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ratings;
+    }
 }
