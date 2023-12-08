@@ -1,5 +1,7 @@
 package domain.rating;
 
+import java.sql.Timestamp;
+
 public class Rating {
 	private Long ratingID;
     private String userID;
@@ -9,7 +11,7 @@ public class Rating {
     private String ratingPlay;  
     private String ratingGood;  
     private String ratingBad;
-    private String ratingTime;
+    private Timestamp ratingTime;
 
     public void setRatingID(Long RatingID) {
     	this.ratingID=RatingID;
@@ -35,7 +37,7 @@ public class Rating {
     	this.ratingBad=RatingBad;
     }
 
-     public void setRatingTime(String RatingTime) {
+     public void setRatingTime(Timestamp RatingTime) {
     	this.ratingTime=RatingTime;
     }
     
@@ -67,7 +69,7 @@ public class Rating {
     	return ratingBad;
     }
 
-    public String getRatingTime(){
+    public Timestamp getRatingTime(){
         return ratingTime;
     }
 
