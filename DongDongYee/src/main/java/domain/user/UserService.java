@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     private Connection conn; //db 접근 객체
@@ -129,5 +131,75 @@ public class UserService {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public void delete(String id) {
+        deleteComments(id);
+        deleteRatings(id);
+        deletePromotions(id);
+
+        String sql = "DELETE FROM DD_User WHERE UserID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteComments(String id) {
+        String sql = "DELETE FROM DD_COMMENT WHERE UserID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteRatings(String id) {
+        String sql = "DELETE FROM DD_Ratings WHERE UserID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletePromotions(String userId) {
+        String findPromotionsSql = "SELECT PromotionID FROM DD_Promotion WHERE UserID = ?";
+        List<Long> promotionIds = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(findPromotionsSql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    promotionIds.add(rs.getLong("PromotionID"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        String deleteCommentsSql = "DELETE FROM DD_COMMENT WHERE PromotionID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(deleteCommentsSql)) {
+            for (Long promotionId : promotionIds) {
+                pstmt.setLong(1, promotionId);
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+        
+        String deletePromotionsSql = "DELETE FROM DD_Promotion WHERE UserID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(deletePromotionsSql)) {
+            pstmt.setString(1, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
