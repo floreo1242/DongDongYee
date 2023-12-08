@@ -109,4 +109,19 @@ public class RatingService {
 
         return ratings;
     }
+
+    public void update(Rating rating) {
+        String sql = "UPDATE DD_RATING SET RatingName=?, RatingClub=?, RatingPlay=?, RatingGood=?, RatingBad=? WHERE RatingID=?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, rating.getRatingName());
+            pstmt.setString(2, rating.getRatingClub());
+            pstmt.setString(3, rating.getRatingPlay());
+            pstmt.setString(4, rating.getRatingGood());
+            pstmt.setString(5, rating.getRatingBad());
+            pstmt.setLong(6, rating.getRatingID());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
