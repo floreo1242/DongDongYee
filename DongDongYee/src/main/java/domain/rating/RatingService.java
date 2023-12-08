@@ -16,7 +16,8 @@ public class RatingService {
     private Connection conn; //db 접근 객체
     private PreparedStatement pstmt;
     private ResultSet rs; // db 결과를 담는 객체
-    public RatingService(){
+
+    public RatingService() {
         try {
             String dbURL = "jdbc:mysql://localhost:3306/dongdongdb"; //mySQL 서버의 BBS DB 접근 경로
             String dbID = "dong"; //계정
@@ -119,6 +120,16 @@ public class RatingService {
             pstmt.setString(4, rating.getRatingGood());
             pstmt.setString(5, rating.getRatingBad());
             pstmt.setLong(6, rating.getRatingID());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(Long id) {
+        String sql = "DELETE FROM DD_Rating WHERE RatingID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
