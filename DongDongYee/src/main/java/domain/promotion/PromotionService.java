@@ -107,6 +107,7 @@ public class PromotionService {
     }
 
     public void delete(Long id) {
+        deleteCommentsByPromotionId(id);
         String sql = "DELETE FROM DD_Promotion WHERE PromotionID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, id);
@@ -116,7 +117,17 @@ public class PromotionService {
         }
     }
 
-    public void update(Promotion promotion){
+    public void deleteCommentsByPromotionId(Long promotionId) {
+        String sql = "DELETE FROM DD_COMMENT WHERE PromotionID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, promotionId);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Promotion promotion) {
         String sql = "UPDATE DD_Promotion SET PromotionName=?, PromotionContents=?, PromotionClub=? WHERE PromotionID=?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, promotion.getPromotionName());
