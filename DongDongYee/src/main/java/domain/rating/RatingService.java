@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RatingService {
     private final UserService userService = new UserService();
@@ -88,5 +90,23 @@ public class RatingService {
         return rating;
     }
 
-    
+    public List<Rating> getAllRatings() {
+        List<Rating> ratings = new ArrayList<>();
+
+        String sql = "SELECT * FROM DD_Rating";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Rating rating = new Rating();
+                setRatingResponse(rating, rs);
+
+                ratings.add(rating);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ratings;
+    }
 }
