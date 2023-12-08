@@ -109,4 +109,25 @@ public class UserService {
         }
         return userNickname;
     }
+
+    public User read(String userId) {
+        User user = null;
+        String sql = "SELECT * FROM DD_USER WHERE UserID = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new User();
+                    user.setUserID(rs.getString("UserID"));
+                    user.setUserEmail(rs.getString("UserEmail"));
+                    user.setUserNickname(rs.getString("UserNickname"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }
