@@ -6,8 +6,12 @@ public class Comment {
     private Long commentID;
     private String userID;
     private Long promotionID;
+    private String userNickname;
     private String commentContents;
     private Timestamp commentTime;
+
+    public Comment() {
+    }
 
     public Comment(String userID, Long promotionID, String commentContents) {
         this.userID = userID;
@@ -37,6 +41,14 @@ public class Comment {
 
     public void setPromotionID(Long promotionID) {
         this.promotionID = promotionID;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 
     public String getCommentContents() {
