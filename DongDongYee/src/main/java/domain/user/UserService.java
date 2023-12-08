@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserService {
     private Connection conn; //db 접근 객체
@@ -64,7 +65,7 @@ public class UserService {
             ResultSet rsName = checkStmt.executeQuery();
             if (rsName.next()) {
                 if (rsName.getInt(1) > 0) {
-                    return 1; // 중복되면 -1 반환
+                    return 1; // 중복되면 1 반환
                 }
             }
         } catch (Exception e) {
@@ -89,5 +90,23 @@ public class UserService {
 
         }
         return -1; //DB 오류
+    }
+
+    public String findUserNicknameByUserId(String userId) {
+        String userNickname = null;
+        String sql = "SELECT UserNickname FROM DD_USER WHERE UserID = ?";
+
+        // try-with-resources를 사용하여 자동 리소스 해제
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    userNickname = rs.getString("UserNickname");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userNickname;
     }
 }

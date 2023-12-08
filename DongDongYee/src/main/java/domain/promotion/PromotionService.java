@@ -1,5 +1,7 @@
 package domain.promotion;
 
+import domain.user.UserService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionService {
+    private final UserService userService = new UserService();
     private Connection conn; //db 접근 객체
     private PreparedStatement pstmt;
     private ResultSet rs; // db 결과를 담는 객체
@@ -44,13 +47,16 @@ public class PromotionService {
     }
 
     public Promotion publish(Promotion promotion) {
-        String sql = "INSERT INTO DD_Promotion (UserID, PromotionName, PromotionContents, PromotionClub) VALUES (?, ?, ?, ?)";
+        String nickname = userService.findUserNicknameByUserId(promotion.getUserID());
+        String sql = "INSERT INTO DD_Promotion (UserID, UserNickname, PromotionName, PromotionContents, PromotionClub) VALUES (?, ?, ?, ?, ?)";
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, promotion.getUserID());
-            pstmt.setString(2, promotion.getPromotionName());
-            pstmt.setString(3, promotion.getPromotionContents());
-            pstmt.setString(4, promotion.getPromotionClub());
+            pstmt.setString(2, nickname);
+            pstmt.setString(3, promotion.getPromotionName());
+            pstmt.setString(4, promotion.getPromotionContents());
+            pstmt.setString(5, promotion.getPromotionClub());
+            pstmt.executeUpdate();
 
             ResultSet generatedKeys = pstmt.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -93,9 +99,33 @@ public class PromotionService {
     public void setPromotionResponse(Promotion promotion, ResultSet rs) throws SQLException {
         promotion.setPromotionID(rs.getLong("PromotionID"));
         promotion.setUserID(rs.getString("UserID"));
+        promotion.setUserNickname(rs.getString("UserNickname"));
         promotion.setPromotionName(rs.getString("PromotionName"));
         promotion.setPromotionContents(rs.getString("PromotionContents"));
         promotion.setPromotionClub(rs.getString("PromotionClub"));
         promotion.setPromotionTime(rs.getTimestamp("PromotionTime"));
+    }
+
+    public void delete(Long id) {
+        String sql = "DELETE FROM DD_Promotion WHERE PromotionID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Promotion promotion){
+        String sql = "UPDATE DD_Promotion SET PromotionName=?, PromotionContents=?, PromotionClub=? WHERE PromotionID=?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, promotion.getPromotionName());
+            pstmt.setString(2, promotion.getPromotionContents());
+            pstmt.setString(3, promotion.getPromotionClub());
+            pstmt.setLong(4, promotion.getPromotionID());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
