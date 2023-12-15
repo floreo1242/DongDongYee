@@ -49,7 +49,6 @@ public class RatingPostServlet extends HttpServlet {
 	      rating.setRatingBad(ratingBad);
 	      
 		  // 객체 rating에 설정된 변수들을 db에 저장해주는 기능을 하는 saveRating
-		  RatingService ratingService = new RatingService();
     	  ratingService.saveRating(rating);
 
 	}
