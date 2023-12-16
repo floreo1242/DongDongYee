@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class CommentService {
         request.setUserNickname(userService.findUserNicknameByUserId(request.getUserID()));
         String sql = "INSERT INTO DD_COMMENT (UserID, PromotionID, UserNickname, CommentContents) VALUES (?, ?, ?, ?)";
         try {
-            pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, request.getUserID());
             pstmt.setLong(2, request.getPromotionID());
             pstmt.setString(3, request.getUserNickname());

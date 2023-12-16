@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class RatingService {
         String nickname = userService.findUserNicknameByUserId(rating.getUserID());
         String sql = "INSERT INTO DD_RATING (UserID, UserNickname, RatingName, RatingClub, RatingPlay, RatingGood, RatingBad) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
-            pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, rating.getUserID());
             pstmt.setString(2, nickname);
             pstmt.setString(3, rating.getRatingName());
