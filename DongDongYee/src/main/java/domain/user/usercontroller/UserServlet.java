@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Profile")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserService userService = new UserService();
+    private final UserService userService = new UserService();
 
     public UserServlet() {
         super();
@@ -36,7 +36,6 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("UTF-8");
-        System.out.println("POST");
         HttpSession session = request.getSession();
         if (session.getAttribute("userID") == null) {
             response.sendRedirect("Login.jsp");
@@ -45,11 +44,9 @@ public class UserServlet extends HttpServlet {
         String userPassword = userService.findUserPasswordByUserId(session.getAttribute("userID").toString());
         String password = request.getParameter("password");
         if (password.equals(userPassword)) {
-            System.out.println("IF");
             userService.delete(session.getAttribute("userID").toString());
             response.sendRedirect("Login.jsp");
         } else {
-            System.out.println("ELSE");
             response.sendRedirect("Profile");
         }
     }
