@@ -11,7 +11,12 @@
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
-<%if (promotion == null) {%>
+<%
+    if (session.getAttribute("userID") == null) {
+        response.sendRedirect("Login.jsp");
+    }
+    if (promotion == null) {
+%>
 <form class="promotion__form" action="promotion" method="post">
     <input type="hidden" name="userID" value="<%=session.getAttribute("userID")%>">
     <label for="promotionName">제목</label>

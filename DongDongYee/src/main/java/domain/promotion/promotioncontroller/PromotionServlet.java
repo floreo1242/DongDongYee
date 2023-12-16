@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/promotion")
 public class PromotionServlet extends HttpServlet {
@@ -27,6 +28,15 @@ public class PromotionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("UTF-8");
+//        세션 검사
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userID") == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        }
+        Long promotionID = Long.parseLong(request.getParameter("id"));
+        Promotion promotion = promotionService.read(promotionID);
+        List<Comment> commentList = commentService.read(promotionID);
         request.setAttribute("promotionItem", promotion);
         request.setAttribute("commentList", commentList);
         request.getRequestDispatcher("PromotionItem.jsp?id=" + promotion.getPromotionID()).forward(request, response);
@@ -35,6 +45,12 @@ public class PromotionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("UTF-8");
+//        세션 검사
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userID") == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        }
         Promotion promotion = new Promotion();
         promotion.setUserID(request.getParameter("userID"));
         promotion.setPromotionName(request.getParameter("promotionName"));
