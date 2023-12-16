@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class PromotionService {
         String nickname = userService.findUserNicknameByUserId(promotion.getUserID());
         String sql = "INSERT INTO DD_Promotion (UserID, UserNickname, PromotionName, PromotionContents, PromotionClub) VALUES (?, ?, ?, ?, ?)";
         try {
-            pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, promotion.getUserID());
             pstmt.setString(2, nickname);
             pstmt.setString(3, promotion.getPromotionName());
