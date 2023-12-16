@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import domain.rating.*;
 import java.sql.*;
 import java.lang.Long;
@@ -23,18 +25,19 @@ public class RatingDetailServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 
-        //id에 해당하는 정보들을 담아주는 getRatingsById함수
+		HttpSession session=request.getSession();
+		request.setCharacterEncoding("utf-8");
+		/* String userID = (String)session.getAttribute("userID"); */   	
 		long ratingID = Long.parseLong(request.getParameter("ratingID"));
 
-        Rating rating=ratingService.getRatingsByID(ratingID);
-
-        request.setAttribute("ratingList", ratingList);
-        request.getRequestDispatcher("/Rating_detail.jsp").forward(request, response);
+		Rating rating = ratingService.read(ratingID);
+		request.setAttribute("rating", rating);
+        request.getRequestDispatcher("/Rating_detail.jsp").forward(request, response);    	
 	}
+
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
