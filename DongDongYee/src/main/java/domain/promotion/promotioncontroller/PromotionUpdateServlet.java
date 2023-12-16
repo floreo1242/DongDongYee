@@ -25,12 +25,14 @@ public class PromotionUpdateServlet extends HttpServlet {
         Promotion promotion = new Promotion();
         promotion.setPromotionID(1L);
         promotion.setPromotionContents("haha");
+        request.setCharacterEncoding("UTF-8");
         request.setAttribute("promotion", promotion);
         request.getRequestDispatcher("PromotionWrite.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
         Promotion promotion = new Promotion();
         promotion.setPromotionID(Long.parseLong(request.getParameter("promotionID")));
         promotion.setPromotionName(request.getParameter("promotionName"));

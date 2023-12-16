@@ -39,6 +39,7 @@ public class PromotionServlet extends HttpServlet {
         commentList.add(comment3);
 //        TODO: service 구현 후 주석 제거
 //        commentList = commentService.read(comment);
+        request.setCharacterEncoding("UTF-8");
         request.setAttribute("promotionItem", promotion);
         request.setAttribute("commentList", commentList);
         request.getRequestDispatcher("PromotionItem.jsp?id=" + promotion.getPromotionID()).forward(request, response);
@@ -46,6 +47,7 @@ public class PromotionServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
         Promotion promotion = new Promotion();
         promotion.setUserID(request.getParameter("userID"));
         promotion.setPromotionName(request.getParameter("promotionName"));

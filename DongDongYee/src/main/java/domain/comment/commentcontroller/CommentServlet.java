@@ -22,6 +22,7 @@ public class CommentServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
         Long promotionID = Long.parseLong(request.getParameter("promotionID"));
         Comment comment = new Comment(request.getParameter("userID"), promotionID, request.getParameter("comment"));
 //        TODO: Service 구현

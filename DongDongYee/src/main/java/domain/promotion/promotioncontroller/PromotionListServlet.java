@@ -21,6 +21,7 @@ public class PromotionListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
         List<Promotion> promotionList = new ArrayList<>();
         // FIXME: 테스트용 임시 boardList
         promotionList.add(new Promotion(1L, "제목", "내용", "동아리"));
