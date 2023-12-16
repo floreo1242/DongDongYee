@@ -45,6 +45,7 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (password.equals(userPassword)) {
             userService.delete(session.getAttribute("userID").toString());
+            session.removeAttribute("userID");
             response.sendRedirect("Login.jsp");
         } else {
             response.sendRedirect("Profile");
