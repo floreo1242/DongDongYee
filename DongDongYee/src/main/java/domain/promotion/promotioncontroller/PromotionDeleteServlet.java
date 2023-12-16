@@ -26,10 +26,4 @@ public class PromotionDeleteServlet extends HttpServlet {
 //        promotionService.delete(promotion);
         response.sendRedirect("promotionlist");
     }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.print("<h1>MyServlet!<h1>");
-    }
 }
