@@ -3,6 +3,7 @@ package domain.rating;
 import java.sql.Timestamp;
 
 public class Rating {
+	
 	private Long ratingID;
     private String userID;
     private String userNickname;

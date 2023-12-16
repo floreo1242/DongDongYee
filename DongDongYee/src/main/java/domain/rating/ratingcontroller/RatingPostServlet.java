@@ -1,16 +1,15 @@
 package domain.rating.ratingcontroller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import domain.rating.*;
-import java.sql.*;
-import java.lang.Long;
-
 
 
 @WebServlet("/RatingPostServlet")
@@ -20,20 +19,43 @@ public class RatingPostServlet extends HttpServlet {
 
     public RatingPostServlet() {
         super();
-]    }
+    }
 
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
+		HttpSession session=request.getSession();
+		String club = request.getParameter("club");
+		
+//		if(club!=null) {
+//			ArrayList<Rating> searchratingList=(ArrayList<Rating>)ratingService.getRatingsByPromotionName(club);
+//			Collections.reverse(searchratingList);
+//			session.setAttribute("ratingList", searchratingList);
+//	        request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
+//			
+//		}
+//
+//		else{
+			
+		ArrayList<Rating> ratingList = (ArrayList<Rating>) ratingService.getAllRatings();
+  
+    	Collections.reverse(ratingList);
+        
+		session.setAttribute("ratingList", ratingList);
 
-		//db에 있는 rating 객체 모두를 배열로 반환하는 getRating함수
-        ArrayList<Rating> ratingList = ratingService.getRatings();
-
-        request.setAttribute("ratingList", ratingList);
         request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
+		
+//	}
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			HttpSession session=request.getSession();
+			
+
+			request.setCharacterEncoding("utf-8");
+			String userID = (String)session.getAttribute("userID");
+		  
 		  String ratingName = request.getParameter("RatingName");
 	      String ratingClub = request.getParameter("RatingClub");
 	      String ratingPlay = request.getParameter("RatingPlay");
@@ -42,15 +64,13 @@ public class RatingPostServlet extends HttpServlet {
 	      
 	      Rating rating=new Rating();
 	      
+	      rating.setUserID(userID);
 	      rating.setRatingName(ratingName);
 	      rating.setRatingClub(ratingClub);
 	      rating.setRatingPlay(ratingPlay);
 	      rating.setRatingGood(ratingGood);
 	      rating.setRatingBad(ratingBad);
 	      
-		  // 객체 rating에 설정된 변수들을 db에 저장해주는 기능을 하는 saveRating
-		  RatingService ratingService = new RatingService();
-    	  ratingService.saveRating(rating);
-
-	}
+		  ratingService.publish(rating);
+  }
 }
