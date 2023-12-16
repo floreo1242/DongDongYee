@@ -13,6 +13,7 @@
 <jsp:include page="Header.jsp"/>
 <%if (promotion == null) {%>
 <form class="promotion__form" action="promotion" method="post">
+    <input type="hidden" name="userID" value="<%=session.getAttribute("userID")%>">
     <label for="promotionName">제목</label>
     <input type="text" id="promotionName" name="promotionName">
     <label for="promotionClub">동아리명</label>
