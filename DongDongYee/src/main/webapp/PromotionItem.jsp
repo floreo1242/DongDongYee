@@ -6,27 +6,29 @@
     Promotion promotion = (Promotion) request.getAttribute("promotionItem");
     session.setAttribute("userID", "12312");
     String sessionUserID = session.getAttribute("userID").toString();
+    String promotionName = promotion.getPromotionName();
+    String promotionID = promotion.getPromotionID().toString();
 %>
 <html>
 <head>
     <link href="./css/globals.css" type="text/css" rel="stylesheet">
-    <title><%=promotion.getPromotionName()%>
+    <title><%=promotionName%>
     </title>
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="promotion-item__wrapper">
     <div class="promotion-item__title-bar">
-        <h1 class="promotion-item__title"><%=promotion.getPromotionName()%>
+        <h1 class="promotion-item__title"><%=promotionName%>
         </h1>
-        <button class="promotion-item__button"><a href="">평가 보러가기</a></button>
+        <button class="promotion-item__button" onclick="window.location.href='ratinglist?club=<%=promotion.getPromotionClub()%>'">평가 보러가기</button>
     </div>
     <div class="promotion-item__info">
         <%=promotion.getUserNickname()%> | <%=promotion.getPromotionTime()%>
         <%if (sessionUserID.equals(promotion.getUserID())) {%>
         <div class="promotion-item__modify">
-            <a href="promotionUpdate?id=<%=promotion.getPromotionID()%>">수정</a>
-            <a href="promotionDelete?id=<%=promotion.getPromotionID()%>"
+            <a href="promotionUpdate?id=<%=promotionID%>">수정</a>
+            <a href="promotionDelete?id=<%=promotionID%>"
                onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
 
         </div>
@@ -44,7 +46,7 @@
             <div class="promotion-item__comment__form-wrapper">
                 <form action="CommentServlet" class="promotion-item__comment__form" method="post">
                     <input type="hidden" name="userID" value="<%=sessionUserID%>>">
-                    <input type="hidden" name="promotionID" value="<%=promotion.getPromotionID()%>">
+                    <input type="hidden" name="promotionID" value="<%=promotionID%>">
                     <input type="text" name="comment" placeholder="댓글을 입력하세요.">
                     <input type="submit" value="작성">
                 </form>
