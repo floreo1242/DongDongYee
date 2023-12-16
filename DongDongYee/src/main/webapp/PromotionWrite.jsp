@@ -7,6 +7,8 @@
 <html>
 <head>
     <link href="./css/globals.css" type="text/css" rel="stylesheet">
+    <link href="./css/write.css" type="text/css" rel="stylesheet">
+    
     <title>홍보 게시판</title>
 </head>
 <body>

@@ -1,0 +1,96 @@
+
+
+.promotion__form{
+	display:flex;
+	flex-direction: column;
+	padding:50px;
+}
+
+label[for="promotionName"]{
+	font-size: 17px;
+	font-weight: 600;
+}
+label[for="promotionClub"]{
+	margin-top:15px;
+	font-size: 17px;
+	font-weight: 600;
+}
+
+label[for="promotionContents"]{
+	margin-top:15px;
+	font-size: 17px;
+	font-weight: 600;
+}
+
+input[type="text"]{
+	width:400px;
+	height:30px;
+	margin-top:10px;
+	color:black;
+	border-radius: 10px;
+}
+
+textarea{
+		margin-top:10px;
+		border-radius: 10px;
+		border:2px solid black;
+
+
+}
+
+input[type="submit"]{
+	width:300px;
+	height:30px;
+	margin-top:10px;
+	border-radius: 10px;
+	position:relative;
+	color:white;
+	left:400px;
+	background-color: #18A0FB;
+	border:none;
+	margin-top: 30px;
+}
+
+
+.cate{
+	font-size: 20px;
+	
+}
+
+button[type="submit"]{
+	width:300px;
+	height:30px;
+	margin-top:10px;
+	border-radius: 10px;
+	position:relative;
+	color:white;
+	left:300px;
+	background-color: #18A0FB;
+	border:none;
+	margin-top: 30px;
+}
+
+.ratingread p{
+	font-size: 20px;
+	font-weight: 600;
+}
+
+input[type="text"][name="ratingPlay"]{
+	width:800px;
+	height: 200px;
+}
+
+input[type="text"][name="ratingGood"]{
+	width:800px;
+	height: 200px;
+}
+
+input[type="text"][name="ratingBad"]{
+	width:800px;
+	height: 200px;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 10px;
+    }

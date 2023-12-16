@@ -1,5 +1,8 @@
 .list-wrapper {
     margin: 20px;
+    width:auto;
+    height: 350px;
+    overflow-y: scroll;
 }
 
 .list__header {
@@ -7,6 +10,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    
 }
 
 .list__write {
@@ -73,4 +77,41 @@
 
 .list__item__content {
     color: #333;
+}
+
+.welcometext{
+	  color: #18A0FB;
+	  position:relative;
+	  top:100px;
+}
+
+.itembox{
+	border: 1px solid black;
+	border-radius: 10px;
+	margin-top:10px;
+	padding:20px;
+}
+
+#ratingname{
+	color:#18A0FB;
+	font-size:20px;
+	margin-top: 0px;
+}
+#ratingname a {
+    text-decoration: none;
+    	color:#18A0FB;
+
+}
+
+#ratingclub{
+	margin-top:0px;
+}
+
+.name-nickname-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_wrap{
+	display:flex;
 }
