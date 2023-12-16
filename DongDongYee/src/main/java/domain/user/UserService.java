@@ -116,6 +116,24 @@ public class UserService {
         return userNickname;
     }
 
+    public String findUserPasswordByUserId(String userId) {
+        String userPassword = null;
+        String sql = "SELECT UserPassword FROM DD_USER WHERE UserID = ?";
+
+        // try-with-resources를 사용하여 자동 리소스 해제
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    userPassword = rs.getString("UserPassword");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userPassword;
+    }
+
     public User read(String userId) {
         User user = null;
         String sql = "SELECT * FROM DD_USER WHERE UserID = ?";
@@ -162,7 +180,7 @@ public class UserService {
     }
 
     public void deleteRatings(String id) {
-        String sql = "DELETE FROM DD_Ratings WHERE UserID = ?";
+        String sql = "DELETE FROM DD_RATING WHERE UserID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();

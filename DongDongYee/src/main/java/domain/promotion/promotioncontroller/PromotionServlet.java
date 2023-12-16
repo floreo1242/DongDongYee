@@ -6,13 +6,13 @@ import domain.promotion.Promotion;
 import domain.promotion.PromotionService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/promotion")
 public class PromotionServlet extends HttpServlet {
@@ -26,19 +26,16 @@ public class PromotionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-        Promotion promotion = new Promotion(Long.parseLong(request.getParameter("id")));
-//        TODO: service 구현 후 주석 제거
-//        promotion = promotionService.read(promotion);
-//        FIXME: 테스트용 comment
-        Comment comment1 = new Comment("1", promotion.getPromotionID(), "HaHa 나다.");
-        Comment comment2 = new Comment("2", promotion.getPromotionID(), "Hello World");
-        Comment comment3 = new Comment("3", promotion.getPromotionID(), "End of Comment");
-        List<Comment> commentList = new ArrayList<>();
-        commentList.add(comment1);
-        commentList.add(comment2);
-        commentList.add(comment3);
-//        TODO: service 구현 후 주석 제거
-//        commentList = commentService.read(comment);
+        request.setCharacterEncoding("UTF-8");
+//        세션 검사
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userID") == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        }
+        Long promotionID = Long.parseLong(request.getParameter("id"));
+        Promotion promotion = promotionService.read(promotionID);
+        List<Comment> commentList = commentService.read(promotionID);
         request.setAttribute("promotionItem", promotion);
         request.setAttribute("commentList", commentList);
         request.getRequestDispatcher("PromotionItem.jsp?id=" + promotion.getPromotionID()).forward(request, response);
@@ -46,13 +43,19 @@ public class PromotionServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
+//        세션 검사
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userID") == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        }
         Promotion promotion = new Promotion();
         promotion.setUserID(request.getParameter("userID"));
         promotion.setPromotionName(request.getParameter("promotionName"));
         promotion.setPromotionContents(request.getParameter("promotionContents"));
         promotion.setPromotionClub(request.getParameter("promotionClub"));
-//        TODO: service 구현 후 주석 제거
-//        promotion = service.publish(promotion);
-        response.sendRedirect("promotion?id=" + promotion.getPromotionID());
+        promotion = promotionService.publish(promotion);
+        response.sendRedirect("promotion?id=" + promotion.getPromotionID().toString());
     }
 }

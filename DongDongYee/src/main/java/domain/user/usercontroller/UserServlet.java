@@ -1,7 +1,7 @@
-package domain.promotion.promotioncontroller;
+package domain.user.usercontroller;
 
-import domain.promotion.Promotion;
-import domain.promotion.PromotionService;
+import domain.user.User;
+import domain.user.UserService;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/promotionUpdate")
-public class PromotionUpdateServlet extends HttpServlet {
+@WebServlet("/Profile")
+public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final PromotionService promotionService = new PromotionService();
+    private final UserService userService = new UserService();
 
-    public PromotionUpdateServlet() {
+    public UserServlet() {
         super();
     }
 
@@ -28,9 +28,9 @@ public class PromotionUpdateServlet extends HttpServlet {
             response.sendRedirect("Login.jsp");
             return;
         }
-        Promotion promotion = promotionService.read(Long.parseLong(request.getParameter("id")));
-        request.setAttribute("promotion", promotion);
-        request.getRequestDispatcher("PromotionWrite.jsp").forward(request, response);
+        User user = userService.read(session.getAttribute("userID").toString());
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("Profile.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,12 +41,13 @@ public class PromotionUpdateServlet extends HttpServlet {
             response.sendRedirect("Login.jsp");
             return;
         }
-        Promotion promotion = new Promotion();
-        promotion.setPromotionID(Long.parseLong(request.getParameter("promotionID")));
-        promotion.setPromotionName(request.getParameter("promotionName"));
-        promotion.setPromotionContents(request.getParameter("promotionContents"));
-        promotion.setPromotionClub(request.getParameter("promotionClub"));
-        promotionService.update(promotion);
-        response.sendRedirect("promotion?id=" + promotion.getPromotionID());
+        String userPassword = userService.findUserPasswordByUserId(session.getAttribute("userID").toString());
+        String password = request.getParameter("password");
+        if (password.equals(userPassword)) {
+            userService.delete(session.getAttribute("userID").toString());
+            response.sendRedirect("Login.jsp");
+        } else {
+            response.sendRedirect("Profile");
+        }
     }
 }
