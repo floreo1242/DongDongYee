@@ -4,7 +4,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Promotion promotion = (Promotion) request.getAttribute("promotionItem");
-    session.setAttribute("userID", "12312");
     String sessionUserID = session.getAttribute("userID").toString();
     String promotionName = promotion.getPromotionName();
     String promotionID = promotion.getPromotionID().toString();

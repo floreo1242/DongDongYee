@@ -25,8 +25,7 @@ public class CommentServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Long promotionID = Long.parseLong(request.getParameter("promotionID"));
         Comment comment = new Comment(request.getParameter("userID"), promotionID, request.getParameter("comment"));
-//        TODO: Service 구현
-//        comment = service.publish(comment);
+        comment = service.publish(comment);
         response.sendRedirect("promotion?id=" + promotionID);
     }
 }

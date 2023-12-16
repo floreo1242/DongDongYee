@@ -22,8 +22,8 @@ public class PromotionDeleteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-//        promotionService.delete(promotion);
         request.setCharacterEncoding("UTF-8");
+        promotionService.delete(Long.parseLong(request.getParameter("id")));
         response.sendRedirect("promotionlist");
     }
 }
