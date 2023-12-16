@@ -25,7 +25,8 @@ public class UserServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("userID") == null) {
-            response.sendRedirect("Login.jsp");
+            response.setContentType("text/html;");
+            response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
             return;
         }
         User user = userService.read(session.getAttribute("userID").toString());
@@ -38,7 +39,8 @@ public class UserServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("userID") == null) {
-            response.sendRedirect("Login.jsp");
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
             return;
         }
         String userPassword = userService.findUserPasswordByUserId(session.getAttribute("userID").toString());
@@ -46,8 +48,10 @@ public class UserServlet extends HttpServlet {
         if (password.equals(userPassword)) {
             userService.delete(session.getAttribute("userID").toString());
             session.removeAttribute("userID");
-            response.sendRedirect("Login.jsp");
+            response.getWriter().println("<script>alert('회원 탈퇴가 완료되었습니다.')</script>");
+            response.sendRedirect("Welcome.jsp");
         } else {
+            response.getWriter().println("<script>alert('비밀번호가 일치하지 않습니다.')</script>");
             response.sendRedirect("Profile");
         }
     }

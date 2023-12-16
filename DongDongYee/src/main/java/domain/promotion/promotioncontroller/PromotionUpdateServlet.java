@@ -25,7 +25,8 @@ public class PromotionUpdateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("userID") == null) {
-            response.sendRedirect("Login.jsp");
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
             return;
         }
         Promotion promotion = promotionService.read(Long.parseLong(request.getParameter("id")));
@@ -38,7 +39,8 @@ public class PromotionUpdateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("userID") == null) {
-            response.sendRedirect("Login.jsp");
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
             return;
         }
         Promotion promotion = new Promotion();

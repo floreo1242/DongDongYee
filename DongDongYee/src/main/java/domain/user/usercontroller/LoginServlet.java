@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("userID", userId);
             session.setAttribute("userNickname", userService.findUserNicknameByUserId(userId));
-            response.sendRedirect("./webapp/welcome.jsp");
+            response.sendRedirect("Welcome.jsp");
         }
         else if(loginValid==0){
             response.setContentType("text/html; charset=UTF-8");
