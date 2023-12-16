@@ -61,7 +61,16 @@
                         for (Comment comment : commentList) {
                     %>
                     <li class="comment__item">
-                        <%=comment.getCommentContents()%>
+                        <div>
+                            <%=comment.getUserNickname()%>
+                            <%=comment.getCommentContents()%>
+                            <%if (comment.getUserID().equals(sessionUserID)) {%>
+                            <a href="CommentDelete?commentID=<%=comment.getCommentID()%>&&promotionID=<%=promotionID%>">삭제</a>
+                            <%}%>
+                        </div>
+                        <div>
+                            <%=simpleDateFormat.format(comment.getCommentTime())%>
+                        </div>
                     </li>
                     <%
                             }
