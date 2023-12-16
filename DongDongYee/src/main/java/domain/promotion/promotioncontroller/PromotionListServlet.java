@@ -1,6 +1,7 @@
 package domain.promotion.promotioncontroller;
 
 import domain.promotion.Promotion;
+import domain.promotion.PromotionService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/promotionlist")
 public class PromotionListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private final PromotionService promotionService = new PromotionService();
 
     public PromotionListServlet() {
         super();
@@ -30,13 +32,17 @@ public class PromotionListServlet extends HttpServlet {
             return;
         }
         String query = request.getParameter("search");
-        List<Promotion> promotionList = new ArrayList<>();
-        // FIXME: 테스트용 임시 boardList
-        promotionList.add(new Promotion(1L, "제목", "내용", "동아리"));
-        promotionList.add(new Promotion(2L, "제목", "내용", "동아리"));
-        promotionList.add(new Promotion(3L, "제목", "내용", "동아리"));
-        promotionList.add(new Promotion(4L, "제목", "내용", "동아리"));
-        // TODO: 게시글리스트 불러와서 boardList에 저장
+        List<Promotion> promotionList = promotionService.getAllPromotions();
+        if (query != null && !query.isEmpty()) {
+//            검색어가 있으면
+            List<Promotion> filteredPromotions = new ArrayList<>();
+            for (Promotion promotion : promotionList) {
+                if (promotion.getPromotionName().toLowerCase().contains(query)) {
+                    filteredPromotions.add(promotion);
+                }
+            }
+            promotionList = filteredPromotions;
+        }
         request.setAttribute("promotionList", promotionList);
         request.getRequestDispatcher("Promotion.jsp").forward(request, response);
     }
