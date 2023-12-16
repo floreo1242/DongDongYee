@@ -8,8 +8,8 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    left: 130px;
-    top: 100px;
+    left: 100px;
+    top: 50px;
 }
 
 h1 {
@@ -34,7 +34,7 @@ input[type="text"] {
     margin-top: 5px;
     border: 1px solid #18A0FB;
     border-radius: 10px;
-    color: #C8C8C8;
+    color: black;
 }
 
 button {
@@ -67,4 +67,7 @@ button {
 a {
     color: #18A0FB;
     margin-top: 30px;
+}
+a.no-underline {
+    text-decoration: none;
 }
