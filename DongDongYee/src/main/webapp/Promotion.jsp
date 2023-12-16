@@ -13,8 +13,10 @@
     <div class="list__header">
         <button class="list__write" onclick="window.location.href='PromotionWrite.jsp'">글작성</button>
         <div class="list__search-wrapper">
-            <button class="list__search-button" onclick="">Search</button>
-            <input type="search" class="list__search-input">
+            <form action="promotionlist" method="get">
+                <button class="list__search-button">Search</button>
+                <input type="search" class="list__search-input" name="search" value="<%=request.getParameter("search")%>">
+            </form>
         </div>
     </div>
     <div class="list">

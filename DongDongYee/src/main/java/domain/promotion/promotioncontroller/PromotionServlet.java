@@ -56,7 +56,7 @@ public class PromotionServlet extends HttpServlet {
         promotion.setPromotionName(request.getParameter("promotionName"));
         promotion.setPromotionContents(request.getParameter("promotionContents"));
         promotion.setPromotionClub(request.getParameter("promotionClub"));
-        System.out.println(promotion.getPromotionName());
+        promotion = promotionService.publish(promotion);
         response.sendRedirect("promotion?id=" + promotion.getPromotionID().toString());
     }
 }
