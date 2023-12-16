@@ -42,7 +42,7 @@
     margin-left: 10px;
 }
 
-.list__content {
+.list__content ul{
     list-style: none;
     padding: 0;
 }

@@ -25,6 +25,10 @@ public class PromotionListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("UTF-8");
+//        뒤로가기 시 업데이트를 위해 캐시 사용 안함
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "0");
         HttpSession session = request.getSession();
 //        세션 검사
         if (session.getAttribute("userID") == null) {

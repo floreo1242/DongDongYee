@@ -1,6 +1,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="domain.promotion.Promotion" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String query = request.getParameter("search");
+    if (query == null) {
+        query = "";
+    }
+%>
 <html>
 <head>
     <link rel="stylesheet" href="css/globals.css">
@@ -15,7 +21,7 @@
         <div class="list__search-wrapper">
             <form action="promotionlist" method="get">
                 <button class="list__search-button">Search</button>
-                <input type="search" class="list__search-input" name="search" value="<%=request.getParameter("search")%>">
+                <input type="search" class="list__search-input" name="search" value="<%=query%>">
             </form>
         </div>
     </div>

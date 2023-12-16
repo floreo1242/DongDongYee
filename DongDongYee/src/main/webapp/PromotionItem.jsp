@@ -1,18 +1,24 @@
 <%@ page import="domain.promotion.Promotion" %>
 <%@ page import="domain.comment.Comment" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Promotion promotion = (Promotion) request.getAttribute("promotionItem");
     String sessionUserID = session.getAttribute("userID").toString();
     String promotionName = promotion.getPromotionName();
     String promotionID = promotion.getPromotionID().toString();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd HH:mm");
+    String promotionTime = simpleDateFormat.format(promotion.getPromotionTime());
 %>
 <html>
 <head>
     <link href="./css/globals.css" type="text/css" rel="stylesheet">
     <title><%=promotionName%>
     </title>
+    <link href="./css/globals.css" type="text/css" rel="stylesheet">
+    <link href="./css/PromotionItem.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
@@ -23,7 +29,7 @@
         <button class="promotion-item__button" onclick="window.location.href='ratinglist?club=<%=promotion.getPromotionClub()%>'">평가 보러가기</button>
     </div>
     <div class="promotion-item__info">
-        <%=promotion.getUserNickname()%> | <%=promotion.getPromotionTime()%>
+        <%=promotion.getUserNickname()%> | <%=promotionTime%>
         <%if (sessionUserID.equals(promotion.getUserID())) {%>
         <div class="promotion-item__modify">
             <a href="promotionUpdate?id=<%=promotionID%>">수정</a>
@@ -44,7 +50,7 @@
         <div class="promotion-item__comment">
             <div class="promotion-item__comment__form-wrapper">
                 <form action="CommentServlet" class="promotion-item__comment__form" method="post">
-                    <input type="hidden" name="userID" value="<%=sessionUserID%>>">
+                    <input type="hidden" name="userID" value="<%=sessionUserID%>">
                     <input type="hidden" name="promotionID" value="<%=promotionID%>">
                     <input type="text" name="comment" placeholder="댓글을 입력하세요.">
                     <input type="submit" value="작성">
@@ -61,7 +67,16 @@
                         for (Comment comment : commentList) {
                     %>
                     <li class="comment__item">
-                        <%=comment.getCommentContents()%>
+                        <div>
+                            <%=comment.getUserNickname()%>
+                            <%=comment.getCommentContents()%>
+                            <%if (comment.getUserID().equals(sessionUserID)) {%>
+                            <a href="CommentDelete?commentID=<%=comment.getCommentID()%>&&promotionID=<%=promotionID%>">삭제</a>
+                            <%}%>
+                        </div>
+                        <div>
+                            <%=simpleDateFormat.format(comment.getCommentTime())%>
+                        </div>
                     </li>
                     <%
                             }
