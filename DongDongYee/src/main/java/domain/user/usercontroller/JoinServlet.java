@@ -27,5 +27,6 @@ public class JoinServlet extends HttpServlet {
         user.setUserEmail(request.getParameter("email"));
         user.setUserNickname(request.getParameter("nickname"));
         service.join(user);
+        response.sendRedirect("Login.jsp");
     }
 }
