@@ -22,14 +22,8 @@ public class PromotionDeleteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-        Promotion promotion = new Promotion(Long.parseLong(request.getParameter("id")));
-//        promotionService.delete(promotion);
+        request.setCharacterEncoding("UTF-8");
+        promotionService.delete(Long.parseLong(request.getParameter("id")));
         response.sendRedirect("promotionlist");
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.print("<h1>MyServlet!<h1>");
     }
 }

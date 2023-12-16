@@ -21,6 +21,7 @@ public class JoinServlet extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
         user.setUserID(request.getParameter("id"));
         user.setUserPassword(request.getParameter("password"));
         user.setUserEmail(request.getParameter("email"));
