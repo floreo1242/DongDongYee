@@ -27,15 +27,15 @@ public class RatingPostServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		String club = request.getParameter("club");
 		
-//		if(club!=null) {
-//			ArrayList<Rating> searchratingList=(ArrayList<Rating>)ratingService.getRatingsByPromotionName(club);
-//			Collections.reverse(searchratingList);
-//			session.setAttribute("ratingList", searchratingList);
-//	        request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
-//			
-//		}
-//
-//		else{
+		if(club!=null) {
+			ArrayList<Rating> searchratingList=(ArrayList<Rating>)ratingService.getRatingsByPromotionName(club);
+			Collections.reverse(searchratingList);
+			session.setAttribute("ratingList", searchratingList);
+	        request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
+			
+		}
+
+		else{
 			
 		ArrayList<Rating> ratingList = (ArrayList<Rating>) ratingService.getAllRatings();
   
@@ -45,7 +45,7 @@ public class RatingPostServlet extends HttpServlet {
 
         request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
 		
-//	}
+	}
 	}
 
 	
@@ -72,5 +72,7 @@ public class RatingPostServlet extends HttpServlet {
 	      rating.setRatingBad(ratingBad);
 	      
 		  ratingService.publish(rating);
+          response.sendRedirect("./Rating_list.jsp");
+
   }
 }

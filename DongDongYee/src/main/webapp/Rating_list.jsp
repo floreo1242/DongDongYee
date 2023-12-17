@@ -37,11 +37,7 @@
 	
 
     </div>
-	<script>
-	window.onload = function() {
-	location.href = 'RatingPostServlet';
-	}
-	</script>
+	
     
     <jsp:include page="Footer.jsp"/>
 </body>
