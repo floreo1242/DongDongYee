@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="domain.promotion.Promotion" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String query = request.getParameter("search");
@@ -35,8 +36,11 @@
             <li>
                 <div class="list__item">
                     <div class="list__item__header">
-                        <a href="promotion?id=<%=promotion.getPromotionID()%>"><%=promotion.getPromotionName()%></a>
-                        <span><%=promotion.getPromotionClub()%></span>
+                        <div>
+                            <a href="promotion?id=<%=promotion.getPromotionID()%>"><%=promotion.getPromotionName()%></a>
+                            <span>&nbsp;| <%=promotion.getPromotionClub()%></span>
+                        </div>
+                        <span><%=new SimpleDateFormat("MM/dd HH:mm").format(promotion.getPromotionTime())%></span>
                     </div>
                     <div class="list__item__content">
                         <%if (promotionContents.length() > 30) {%>

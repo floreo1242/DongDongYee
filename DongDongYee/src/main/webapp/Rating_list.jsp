@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String query = request.getParameter("club");
     if (query == null) {
@@ -35,11 +36,14 @@
                     <li>
                         <div class="list__item">
                             <div class="list__item__header">
-                                <a href="rating?id=${rating.ratingID}">${rating.ratingName}</a>
-                                <span>${rating.userNickname}</span>
+                                <div>
+                                    <a href="rating?id=${rating.ratingID}">${rating.ratingName}</a>
+                                    <span>&nbsp;| ${rating.userNickname}</span>
+                                </div>
+                                <span><fmt:formatDate value="${rating.ratingTime}" pattern="MM/dd HH:mm"/></span>
                             </div>
                             <div class="list__item__content">
-                                <span>평가 동아리| ${rating.ratingClub}</span>
+                                <span>${rating.ratingClub}</span>
                             </div>
                         </div>
                     </li>

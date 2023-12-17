@@ -5,18 +5,23 @@ body {
 }
 
 .item__wrapper {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px;
+    padding: 20px;
+    background-color: #fff;
 }
 
 .item__title-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*margin-bottom: 10px;*/
 }
 
 .item__title {
     color: #18A0FB;
+    margin: 20px 0 5px 0;
 }
 
 .item__button {
@@ -46,6 +51,14 @@ body {
 
 .item__main {
     color: #333;
+}
+
+.item__main__title {
+    margin: 20px 0 0 0;
+}
+
+.item__main__content {
+    margin: 0 0 20px 0;
 }
 
 .item__footer {
@@ -86,7 +99,6 @@ body {
 .comment__item {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 16px;
     padding: 16px;
     background-color: white;
