@@ -5,6 +5,7 @@ import domain.promotion.PromotionService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +49,7 @@ public class PromotionListServlet extends HttpServlet {
             }
             promotionList = filteredPromotions;
         }
+        Collections.reverse(promotionList);
         request.setAttribute("promotionList", promotionList);
         request.getRequestDispatcher("Promotion.jsp").forward(request, response);
     }

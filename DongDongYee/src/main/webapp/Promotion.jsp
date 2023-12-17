@@ -21,33 +21,31 @@
         <div class="list__search-wrapper">
             <form action="promotionlist" method="get">
                 <button class="list__search-button">Search</button>
-                <input type="search" class="list__search-input" name="search" value="<%=query%>">
+                <input type="search" class="list__search-input" name="search" value="<%=query%>" placeholder="제목 검색">
             </form>
         </div>
     </div>
-    <div class="list">
-        <div class="list__content">
-            <ul>
-                <%
-                    List<Promotion> promotionList = (List<Promotion>) request.getAttribute("promotionList");
-                    for (Promotion promotion : promotionList) {
-                %>
-                <li>
-                    <div class="list__item">
-                        <div class="list__item__header">
-                            <a href="promotion?id=<%=promotion.getPromotionID()%>"><%=promotion.getPromotionName()%></a>
-                            <span><%=promotion.getPromotionClub()%></span>
-                        </div>
-                        <div class="list__item__content">
-                            <%=promotion.getPromotionContents()%>
-                        </div>
+    <div class="list__content">
+        <ul>
+            <%
+                List<Promotion> promotionList = (List<Promotion>) request.getAttribute("promotionList");
+                for (Promotion promotion : promotionList) {
+            %>
+            <li>
+                <div class="list__item">
+                    <div class="list__item__header">
+                        <a href="promotion?id=<%=promotion.getPromotionID()%>"><%=promotion.getPromotionName()%></a>
+                        <span><%=promotion.getPromotionClub()%></span>
                     </div>
-                </li>
-                <%
-                    }
-                %>
-            </ul>
-        </div>
+                    <div class="list__item__content">
+                        <%=promotion.getPromotionContents()%>
+                    </div>
+                </div>
+            </li>
+            <%
+                }
+            %>
+        </ul>
     </div>
 </div>
 <jsp:include page="Footer.jsp"/>

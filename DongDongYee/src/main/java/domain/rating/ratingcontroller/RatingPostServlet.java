@@ -21,60 +21,65 @@ public class RatingPostServlet extends HttpServlet {
         super();
     }
 
-    
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Expires", "0");
 		HttpSession session=request.getSession();
-		String club = request.getParameter("club");
-		
-		if(club!=null) {
-			ArrayList<Rating> searchratingList=(ArrayList<Rating>)ratingService.getRatingsByPromotionName(club);
-			Collections.reverse(searchratingList);
-			session.setAttribute("ratingList", searchratingList);
-	        request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
-			
+		if (session.getAttribute("userID") == null) {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
+			return;
 		}
+		String club = request.getParameter("club");
+		if(club!=null && !club.isEmpty()) {
+			ArrayList<Rating> searchingList =(ArrayList<Rating>)ratingService.getRatingsByPromotionName(club);
+			Collections.reverse(searchingList);
+			session.setAttribute("ratingList", searchingList);
+	        request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
+		} else {
 
-		else{
-			
 		ArrayList<Rating> ratingList = (ArrayList<Rating>) ratingService.getAllRatings();
-  
+
     	Collections.reverse(ratingList);
-        
+
 		session.setAttribute("ratingList", ratingList);
 
         request.getRequestDispatcher("/Rating_list.jsp").forward(request, response);
-		
+
 	}
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
-        
+
 		HttpSession session=request.getSession();
-			
+
 
 			request.setCharacterEncoding("utf-8");
 			String userID = (String)session.getAttribute("userID");
-		  
+
 		  String ratingName = request.getParameter("RatingName");
 	      String ratingClub = request.getParameter("RatingClub");
 	      String ratingPlay = request.getParameter("RatingPlay");
 	      String ratingGood = request.getParameter("RatingGood");
 	      String ratingBad = request.getParameter("RatingBad");
-	      
+
 	      Rating rating=new Rating();
-	      
+
 	      rating.setUserID(userID);
 	      rating.setRatingName(ratingName);
 	      rating.setRatingClub(ratingClub);
 	      rating.setRatingPlay(ratingPlay);
 	      rating.setRatingGood(ratingGood);
 	      rating.setRatingBad(ratingBad);
-	      
+
 		  ratingService.publish(rating);
 		  response.sendRedirect("ratinglist");
   }
