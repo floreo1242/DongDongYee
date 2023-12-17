@@ -21,7 +21,7 @@
 	        <input type="text" id="UserID" name="UserID" placeholder="아이디를 입력해주세요"/>
 	        <br>
 	        <label for="UserPassword">비밀번호</label>
-	        <input type="text" id="UserPassword" name="UserPassword" placeholder="비밀번호을 입력해주세요"/>
+	        <input type="password" id="UserPassword" name="UserPassword" placeholder="비밀번호을 입력해주세요"/>
 	        <button type="submit">로그인</button>
 	        <br><br><a href="Register.jsp">회원가입</a>
 	        

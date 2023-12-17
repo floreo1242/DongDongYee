@@ -26,7 +26,7 @@
     <div class="promotion-item__title-bar">
         <h1 class="promotion-item__title"><%=promotionName%>
         </h1>
-        <button class="promotion-item__button" onclick="window.location.href='RatingPostServlet?club=<%=promotion.getPromotionClub()%>'">평가 보러가기</button>
+        <button class="promotion-item__button" onclick="window.location.href='ratinglist?club=<%=promotion.getPromotionClub()%>'">평가 보러가기</button>
     </div>
     <div class="promotion-item__info">
         <%=promotion.getUserNickname()%> | <%=promotionTime%>

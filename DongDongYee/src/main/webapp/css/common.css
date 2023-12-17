@@ -1,0 +1,68 @@
+a{
+	text-decoration: none;
+	font-size: 25px;
+	color:#18A0FB;
+	font-weight: 600;
+}
+.dde{
+	width:180px;
+	height:80px;
+	background-color: #18A0FB;
+	position: relative;
+	top:-15px;
+	display: flex;
+	justify-content: center;  
+	align-items: center;
+	border-radius: 10px;	
+ 
+	}
+	
+.dde a{
+	color: white;
+	font-size: 35px;
+	font-weight: 600;
+	position: relative;
+}
+
+.navbar {
+    width: 96%;
+    height: 50px;
+   display: flex;
+   text-align: center;
+   padding:20px;
+   margin-left: 25px;
+}
+
+.logo{
+  color:#18A0FB;
+  font-size: 40px;
+  font-weight: 600;
+  position: relative;
+  top:-10px;
+  left:-8px;
+}
+
+
+.menubox{
+	width:1000px;
+	height:0px;
+	display: flex;
+	position: relative;
+  	top: 50%;
+  	margin-top: -10px;
+  	margin-left:50px;
+}
+
+.menu {
+	   text-align: center;
+	   font-size: 20px;
+	   margin-right: 40px; 
+	margin-left: 40px;  
+
+}
+
+.welcome{
+	position: relative;
+	right:-270px;
+}
+
