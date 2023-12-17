@@ -7,6 +7,7 @@
 <title>동동이 | 회원가입</title>
 <link href="./css/globals.css" type="text/css" rel="stylesheet">
 <link href="./css/register.css" type="text/css" rel="stylesheet">
+<link href="./css/common.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="./js/register.js"></script>
 </head>
