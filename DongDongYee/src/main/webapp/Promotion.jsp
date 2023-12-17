@@ -30,6 +30,7 @@
             <%
                 List<Promotion> promotionList = (List<Promotion>) request.getAttribute("promotionList");
                 for (Promotion promotion : promotionList) {
+                    String promotionContents = promotion.getPromotionContents();
             %>
             <li>
                 <div class="list__item">
@@ -38,7 +39,11 @@
                         <span><%=promotion.getPromotionClub()%></span>
                     </div>
                     <div class="list__item__content">
-                        <%=promotion.getPromotionContents()%>
+                        <%if (promotionContents.length() > 30) {%>
+                        <%=promotionContents.substring(0, 30) + "..."%>
+                        <%} else {%>
+                        <%=promotionContents%>
+                        <%}%>
                     </div>
                 </div>
             </li>

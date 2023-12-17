@@ -1,23 +1,25 @@
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
 }
 
-.promotion-item__wrapper {
+.item__wrapper {
     margin: 20px;
 }
 
-.promotion-item__title-bar {
+.item__title-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    /*margin-bottom: 10px;*/
 }
 
-.promotion-item__title {
+.item__title {
     color: #18A0FB;
 }
 
-.promotion-item__button {
+.item__button {
     background-color: #18A0FB;
     color: white;
     border: none;
@@ -26,39 +28,40 @@ body {
     cursor: pointer;
 }
 
-.promotion-item__info {
+.item__info {
     color: #787878;
     font-size: small;
 }
 
-.promotion-item__modify {
+.item__modify {
     margin-top: 10px;
 }
 
-.promotion-item__modify a {
+.item__modify a {
     margin-right: 10px;
     text-decoration: none;
-    color: #18A0FB;
+    font-size: small;
+    color: #787878;
 }
 
-.promotion-item__main {
+.item__main {
     color: #333;
 }
 
-.promotion-item__footer {
+.item__footer {
     margin-top: 20px;
 }
 
-.promotion-item__comment__form-wrapper {
+.item__comment__form-wrapper {
     margin-top: 20px;
 }
 
-.promotion-item__comment__form {
+.item__comment__form {
     display: flex;
     flex-direction: column;
 }
 
-.promotion-item__comment__form input[type="text"] {
+.item__comment__form input[type="text"] {
     width: 100%;
     margin-bottom: 10px;
     padding: 8px;
@@ -66,7 +69,7 @@ body {
     border-radius: 8px;
 }
 
-.promotion-item__comment__form input[type="submit"] {
+.item__comment__form input[type="submit"] {
     background-color: #18A0FB;
     color: white;
     border: none;
@@ -75,7 +78,7 @@ body {
     cursor: pointer;
 }
 
-.promotion-item__comment__content ul {
+.item__comment__content ul {
     list-style: none;
     padding: 0;
 }
@@ -83,8 +86,10 @@ body {
 .comment__item {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 16px;
     padding: 16px;
+    background-color: white;
 }
 
 .comment__item div {
@@ -93,7 +98,8 @@ body {
 
 .comment__item a {
     text-decoration: none;
-    color: #18A0FB;
+    font-size: small;
+    color: #787878;
 }
 
 .comment__item div:last-child {
