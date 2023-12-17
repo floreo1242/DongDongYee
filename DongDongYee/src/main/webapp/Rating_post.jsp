@@ -14,19 +14,19 @@
     <div class="center">
     <form action="ratinglist" method="post" class="promotion__form"> 
     	<div class="cate">평가 제목</div><br>
-        <input type="text" id="RatingName" name="RatingName"/><br>
+        <input type="text" id="RatingName" name="RatingName" required/><br>
         
         <div class="cate">동아리명</div><br>
-        <input type="text" id="RatingClub" name="RatingClub"/><br>
+        <input type="text" id="RatingClub" name="RatingClub" required/><br>
         
        <div class="cate">동아리 활동으로 이런 것을 했어요</div><br>
-        <textarea id="RatingPlay" name="RatingPlay" cols="30" rows="10"></textarea><br>
+        <textarea id="RatingPlay" name="RatingPlay" cols="30" rows="10" required></textarea><br>
         
  		<div class="cate">이런 점이 좋았어요</div><br>
-        <textarea id="RatingGood" name="RatingGood" cols="30" rows="10"></textarea><br>
+        <textarea id="RatingGood" name="RatingGood" cols="30" rows="10" required></textarea><br>
         
         <div class="cate">이런 점이 아쉬웠어요</div><br>
-        <textarea id="RatingBad" name="RatingBad" cols="30" rows="10"></textarea><br>
+        <textarea id="RatingBad" name="RatingBad" cols="30" rows="10" required></textarea><br>
         
         <input type="submit" value="작성">
 	  </form>
