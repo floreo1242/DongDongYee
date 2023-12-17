@@ -50,8 +50,10 @@
                 <form action="CommentServlet" class="item__comment__form" method="post">
                     <input type="hidden" name="userID" value="<%=sessionUserID%>">
                     <input type="hidden" name="promotionID" value="<%=promotionID%>">
-                    <input type="text" name="comment" placeholder="댓글을 입력하세요.">
-                    <input type="submit" value="작성">
+                    <div>
+                        <input type="text" name="comment" placeholder="댓글을 입력하세요.">
+                        <input type="submit" value="작성">
+                    </div>
                 </form>
             </div>
             <div class="item__comment__content">
