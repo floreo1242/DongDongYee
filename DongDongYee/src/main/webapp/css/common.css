@@ -4,6 +4,11 @@ a{
 	color:#18A0FB;
 	font-weight: 600;
 }
+
+#register-link {
+	font-size: small;
+}
+
 .dde{
 	width:180px;
 	height:80px;
@@ -57,7 +62,7 @@ a{
 	   text-align: center;
 	   font-size: 20px;
 	   margin-right: 40px; 
-	margin-left: 40px;  
+	margin-left: 40px;
 
 }
 

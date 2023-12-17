@@ -23,7 +23,7 @@
 	        <label for="UserPassword">비밀번호</label>
 	        <input type="password" id="UserPassword" name="UserPassword" placeholder="비밀번호을 입력해주세요"/>
 	        <button type="submit">로그인</button>
-	        <br><br><a href="Register.jsp">회원가입</a>
+	        <br><br><a href="Register.jsp" id="register-link">회원가입</a>
 	        
 		  </form>
 	    </div>
