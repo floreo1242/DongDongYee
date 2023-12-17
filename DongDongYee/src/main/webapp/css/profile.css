@@ -1,0 +1,35 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-title {
+    color: #18A0FB;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    margin-bottom: 10px;
+}
+
+.profile-info span {
+    font-weight: bold;
+}
+
+.profile-link {
+    display: inline-block;
+    color: #18A0FB;
+    font-size: smaller;
+}
