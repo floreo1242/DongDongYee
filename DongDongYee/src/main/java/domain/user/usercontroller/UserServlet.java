@@ -49,7 +49,7 @@ public class UserServlet extends HttpServlet {
             userService.delete(session.getAttribute("userID").toString());
             session.removeAttribute("userID");
             response.getWriter().println("<script>alert('회원 탈퇴가 완료되었습니다.')</script>");
-            response.sendRedirect("Welcome.jsp");
+            response.sendRedirect("/");
         } else {
             response.getWriter().println("<script>alert('비밀번호가 일치하지 않습니다.')</script>");
             response.sendRedirect("Profile");
