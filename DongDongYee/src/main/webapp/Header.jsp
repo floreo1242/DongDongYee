@@ -6,7 +6,7 @@
     <p><a class="logo" href="/">동동이</a></p>
     <div class="menubox">
 	    <div class="menu"><a href="promotionlist">홍보게시판</a></div>
-	    <div class="menu"><a href="ratinglist">리뷰게시판</div>
+		<div class="menu"><a href="ratinglist">후기게시판</a></div>
 	    <div class="menu"><a href="Profile">프로필</a></div>
 	    <div class="welcome">
 	        <%if (session.getAttribute("userID") == null) {%>

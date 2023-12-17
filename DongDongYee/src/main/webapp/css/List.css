@@ -1,7 +1,12 @@
+body {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
 .list-wrapper {
     margin: 20px;
     width:auto;
-    height: 500px;
+    height: auto;
     overflow-y: scroll;
 }
 
@@ -54,8 +59,10 @@
 .list__item {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 16px;
     padding: 16px;
+    background-color: white;
 }
 
 .list__item__header {
@@ -95,7 +102,7 @@
 #ratingname{
 	color:#18A0FB;
 	font-size:20px;
-	margin-top: 0px;
+	margin-top: 0;
 }
 #ratingname a {
     text-decoration: none;
@@ -104,7 +111,7 @@
 }
 
 #ratingclub{
-	margin-top:0px;
+	margin-top:0;
 }
 
 .name-nickname-wrapper {

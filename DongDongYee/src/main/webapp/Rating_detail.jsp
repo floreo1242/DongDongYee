@@ -1,65 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="domain.rating.Rating" %>
-
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+    Rating rating = (Rating) request.getAttribute("rating");
+    String sessionUserID = session.getAttribute("userID").toString();
+    String ratingName = rating.getRatingName();
+    String ratingID = rating.getRatingID().toString();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd HH:mm");
+    String ratingTime = simpleDateFormat.format(rating.getRatingTime());
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Rating View</title>
-<link rel="stylesheet" href="./css/globals.css">
-<link rel="stylesheet" href="./css/write.css">
-<link rel="stylesheet" href="./css/List.css">
-
+    <meta charset="UTF-8">
+    <title><%=ratingName%>
+    </title>
+    <link rel="stylesheet" href="./css/globals.css">
+    <link rel="stylesheet" href="css/PostItem.css">
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
-<div class="list-wrapper">
-	<form action="RatingModifyServlet" method="post" class="ratingread">
-	    <input type="hidden" name="ratingID" value="${rating.ratingID}">
-	    <p>글 제목 | <input type="text" name="ratingName" id=ratingName value="${rating.ratingName}"></p>
-	    
-	    <p>글 작성자| ${rating.userNickname}</p>
-	    <p>작성시간 | ${rating.ratingTime}</p>
-	    <p>평가 동아리 | <input type="text" name="ratingClub" id=ratingClub value="${rating.ratingClub}"></p>
-	    <p>동아리 활동내용</p>
-	    <input type="text" name="ratingPlay" id=ratingPlay value="${rating.ratingPlay}"></input>
-	    <p>동아리 활동 중 좋았던 점</p>
-	    <input type="text" name="ratingGood" id=ratingGood value="${rating.ratingGood}"></input>
-	    <p>동아리 활동 중 아쉬웠던 점</p>
-		<input type="text" name="ratingBad" id=ratingBad value="${rating.ratingBad}"></input>
-	    <%
-	    String userID = (String)session.getAttribute("userID");
-	    Rating rating = (Rating)request.getAttribute("rating");
-	    if(rating != null && userID != null) {
-	        String writerID = rating.getUserID();
-	        if(userID.equals(writerID)) {
-	    %>
-	    <div class="button_wrap">
-	    <br><button type="submit">수정</button>
-	    <% 
-	        }
-	    }
-	    %>
-	</form>
-	
-	
-	<form action="RatingDeleteServlet" method="post">
-	    <input type="hidden" name="ratingID" value="${rating.ratingID}">
-	    <%
-	    if(rating != null && userID != null) {
-	        String writerID = rating.getUserID();
-	        if(userID.equals(writerID)) {
-	    %>
-	    <button type="submit">삭제</button>
-	    <% 
-	        }
-	    }
-	    %>
-	</form>
-	</div>
+<div class="item__wrapper">
+    <div class="item__title-bar">
+        <h1 class="item__title"><%=ratingName%>
+        </h1>
+    </div>
+    <div class="item__info">
+        <%=rating.getUserNickname()%> | <%=ratingTime%>
+        <%if (sessionUserID.equals(rating.getUserID())) {%>
+        <div class="item__modify">
+            <a href="RatingModifyServlet?id=<%=ratingID%>">수정</a>
+            <a href="RatingDeleteServlet?id=<%=ratingID%>"
+               onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+        </div>
+        <%}%>
+    </div>
+    <hr>
+    <div class="item__main">
+        <div>
+            <p>동아리 활동으로 이런 것을 했어요</p>
+            <pre><%=rating.getRatingPlay()%></pre>
+        </div>
+        <div>
+            <p>이런 점이 좋았어요</p>
+            <pre><%=rating.getRatingGood()%></pre>
+        </div>
+        <div>
+            <p>이런 점이 아쉬웠어요</p>
+            <pre><%=rating.getRatingBad()%></pre>
+        </div>
+    </div>
 </div>
-    <jsp:include page="Footer.jsp"/>
-
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>
