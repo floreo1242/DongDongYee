@@ -42,5 +42,4 @@
     <jsp:include page="Footer.jsp"/>
 </body>
 </html>
-<%--          location.href = 'RatingPostServlet?club=<%=club%>'; --%>
 
