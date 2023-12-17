@@ -14,15 +14,7 @@ a:visited {
     color: #18A0FB;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-     /*background-color: #333;*/
-    margin-left: 20px;
-    padding: 20px;
-    width: auto;
-    height: 50px;
-}
+
 
 .navbar h1 {
     margin-top: auto;

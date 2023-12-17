@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="./css/globals.css">
 <link rel="stylesheet" href="./css/List.css">
 
-<title>동아리 후기 리스트</title>
+<title>후기 게시판</title>
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
@@ -21,23 +21,30 @@
 %>
 
    <div class="list-wrapper">
-   <button class="list__write" onclick="window.location.href='Rating_post.jsp'">글작성</button>
-   
+       <div class="list__header">
+   	<button class="list__write" onclick="window.location.href='Rating_post.jsp'">글작성</button>
+	</div>
+	<div class="list">
+	        <div class="list__content">
+	<ul>
 	<c:forEach var="rating" items="${sessionScope.ratingList}">
-		   		 <div class=itembox >
-			   		<div class="name-nickname-wrapper">
-			   		<p id=ratingname><a href="RatingDetailServlet?ratingID=${rating.ratingID}">${rating.ratingName}</a></p]>
-			   		
-			         <div id=nickname>${rating.userNickname}</div>
-			        </div>
-		        <p id=ratingclub>평가 동아리:   ${rating.ratingClub}</p>
-		        </div>
+		   		 <li>
+                    <div class="list__item">
+	                    <div class="list__item__header">
+				   		<a href="RatingDetailServlet?ratingID=${rating.ratingID}">${rating.ratingName}</a>
+				         <span>${rating.userNickname}</span>
+				        </div>
+				        <div class="list__item__content">
+				        	<span>평가 동아리|   ${rating.ratingClub}</span>
+				        </div>
+				      </div>
+				 	</li>
 	</c:forEach>
-	
-	
-
-    </div>
-	
+	</ul>
+	</div>
+	</div>
+	</div>
+		
     
     <jsp:include page="Footer.jsp"/>
 </body>
