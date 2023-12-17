@@ -1,0 +1,40 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.signout-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.signout-title {
+    color: #18A0FB;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.signout-input {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #18A0FB;
+    border-radius: 8px;
+    padding: 4px;
+    margin-left: 10px;
+}
+
+.signout-button {
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
