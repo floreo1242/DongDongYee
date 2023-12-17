@@ -20,7 +20,7 @@
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
-<div class="item-wrapper">
+<div class="item__wrapper">
     <div class="item__title-bar">
         <h1 class="item__title"><%=ratingName%>
         </h1>

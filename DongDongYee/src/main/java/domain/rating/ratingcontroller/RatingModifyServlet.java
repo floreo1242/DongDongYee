@@ -24,31 +24,38 @@ public class RatingModifyServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   response.setContentType("text/html;charset=utf-8");
-	       request.setCharacterEncoding("UTF-8");
-
+        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userID") == null) {
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
+            return;
+        }
+        Rating rating = ratingService.read(Long.parseLong(request.getParameter("id")));
+        request.setAttribute("rating", rating);
+        request.getRequestDispatcher("Rating_post.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String ratingID = request.getParameter("ratingID");
-        Rating updatedRating = ratingService.read(Long.parseLong(ratingID));
-        
-        
-        String ratingName = request.getParameter("ratingName");
-        String ratingClub = request.getParameter("ratingClub");
-        String ratingPlay = request.getParameter("ratingPlay");
-        String ratingGood = request.getParameter("ratingGood");
-        String ratingBad = request.getParameter("ratingBad");
-        
-        updatedRating.setRatingName(ratingName);
-        updatedRating.setRatingClub(ratingClub);
-        updatedRating.setRatingPlay(ratingPlay);
-        updatedRating.setRatingGood(ratingGood);
-        updatedRating.setRatingBad(ratingBad);
-        		    
-        ratingService.update(updatedRating);
+        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userID") == null) {
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println("<script>alert('세션이 만료되었습니다. 다시 로그인 해주세요.'); window.location.href='Login.jsp';</script>");
+            return;
+        }
+        Rating rating = new Rating();
+        rating.setRatingID(Long.parseLong(request.getParameter("RatingID")));
+        rating.setRatingName(request.getParameter("RatingName"));
+        rating.setRatingClub(request.getParameter("RatingClub"));
+        rating.setRatingPlay(request.getParameter("RatingPlay"));
+        rating.setRatingGood(request.getParameter("RatingGood"));
+        rating.setRatingBad(request.getParameter("RatingBad"));
+        ratingService.update(rating);
+        response.sendRedirect("rating?id=" + rating.getRatingID());
 
 	}
 
