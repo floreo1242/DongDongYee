@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import domain.rating.*;
 
 
-@WebServlet("/RatingPostServlet")
+@WebServlet("/ratinglist")
 public class RatingPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  	RatingService ratingService = new RatingService();
@@ -50,7 +50,11 @@ public class RatingPostServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			HttpSession session=request.getSession();
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "0");
+        
+		HttpSession session=request.getSession();
 			
 
 			request.setCharacterEncoding("utf-8");
@@ -72,7 +76,6 @@ public class RatingPostServlet extends HttpServlet {
 	      rating.setRatingBad(ratingBad);
 	      
 		  ratingService.publish(rating);
-          response.sendRedirect("./Rating_list.jsp");
-
+		  response.sendRedirect("ratinglist");
   }
 }

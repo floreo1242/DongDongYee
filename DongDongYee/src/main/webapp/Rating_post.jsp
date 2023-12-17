@@ -12,7 +12,7 @@
 <jsp:include page="Header.jsp"/>
 <div class="main-content">
     <div class="center">
-    <form action="RatingPostServlet" method="post" class="promotion__form"> 
+    <form action="ratinglist" method="post" class="promotion__form"> 
     	<div class="cate">평가 제목</div><br>
         <input type="text" id="RatingName" name="RatingName"/><br>
         
