@@ -128,7 +128,7 @@ public class RatingService {
     }
 
     public void delete(Long id) {
-        String sql = "DELETE FROM DD_Rating WHERE RatingID = ?";
+        String sql = "DELETE FROM DD_RATING WHERE RatingID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, id);
             pstmt.executeUpdate();
