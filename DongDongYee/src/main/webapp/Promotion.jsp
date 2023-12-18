@@ -43,8 +43,8 @@
                         <span><%=new SimpleDateFormat("MM/dd HH:mm").format(promotion.getPromotionTime())%></span>
                     </div>
                     <div class="list__item__content">
-                        <%if (promotionContents.length() > 30) {%>
-                        <%=promotionContents.substring(0, 30) + "..."%>
+                        <%if (promotionContents.length() > 100) {%>
+                        <%=promotionContents.substring(0, 100) + "..."%>
                         <%} else {%>
                         <%=promotionContents%>
                         <%}%>

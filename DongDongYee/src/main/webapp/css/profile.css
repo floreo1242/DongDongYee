@@ -33,3 +33,13 @@ body {
     color: #18A0FB;
     font-size: smaller;
 }
+
+.profile-input {
+    width: 400px;
+    height: 30px;
+    margin-top: 10px;
+    color: black;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
