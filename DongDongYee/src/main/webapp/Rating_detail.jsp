@@ -38,16 +38,16 @@
     <hr>
     <div class="item__main">
         <div>
-            <p>동아리 활동으로 이런 것을 했어요</p>
-            <pre><%=rating.getRatingPlay()%></pre>
+            <h2 class="item__main__title">동아리 활동으로 이런 것을 했어요</h2>
+            <pre class="item__main__content"><%=rating.getRatingPlay()%></pre>
         </div>
         <div>
-            <p>이런 점이 좋았어요</p>
-            <pre><%=rating.getRatingGood()%></pre>
+            <h2 class="item__main__title">이런 점이 좋았어요</h2>
+            <pre class="item__main__content"><%=rating.getRatingGood()%></pre>
         </div>
         <div>
-            <p>이런 점이 아쉬웠어요</p>
-            <pre><%=rating.getRatingBad()%></pre>
+            <h2 class="item__main__title">이런 점이 아쉬웠어요</h2>
+            <pre class="item__main__content"><%=rating.getRatingBad()%></pre>
         </div>
     </div>
 </div>
