@@ -13,9 +13,26 @@
 <jsp:include page="Header.jsp"/>
 <div class="profile-container">
     <h1 class="profile-title">프로필</h1>
-    <div class="profile-info" id="userId">ID: <%=user.getUserID()%></div>
-    <div class="profile-info" id="userNickname">닉네임: <%=user.getUserNickname()%></div>
-    <div class="profile-info" id="userEmail">이메일: <%=user.getUserEmail()%></div>
+    <table>
+        <tr>
+            <div class="profile-info" id="userId">
+                <td>ID</td>
+                <td><input class="profile-input" type="text" value="<%=user.getUserID()%>" readonly></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="profile-info" id="userNickname">
+                <td>닉네임</td>
+                <td><input class="profile-input" type="text" value="<%=user.getUserNickname()%>" readonly></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="profile-info" id="userEmail">
+                <td>이메일</td>
+                <td><input class="profile-input" type="text" value="<%=user.getUserEmail()%>" readonly></td>
+            </div>
+        </tr>
+    </table>
     <a href="signout.jsp" class="profile-link">회원탈퇴</a>
 </div>
 <jsp:include page="Footer.jsp"/>

@@ -95,7 +95,7 @@ public class RatingService {
     public List<Rating> getAllRatings() {
         List<Rating> ratings = new ArrayList<>();
 
-        String sql = "SELECT * FROM DD_Rating";
+        String sql = "SELECT * FROM DD_RATING";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();
 

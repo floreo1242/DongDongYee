@@ -160,7 +160,7 @@ public class UserService {
         deleteRatings(id);
         deletePromotions(id);
 
-        String sql = "DELETE FROM DD_User WHERE UserID = ?";
+        String sql = "DELETE FROM DD_USER WHERE UserID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();

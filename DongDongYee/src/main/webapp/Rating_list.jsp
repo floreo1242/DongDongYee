@@ -1,3 +1,6 @@
+<%@ page import="domain.rating.Rating" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -32,22 +35,26 @@
     <div class="list">
         <div class="list__content">
             <ul>
-                <c:forEach var="rating" items="${sessionScope.ratingList}">
+                <%
+                    List<Rating> ratingList = (List<Rating>) session.getAttribute("ratingList");
+                    for (Rating rating : ratingList) {
+                %>
                     <li>
                         <div class="list__item">
                             <div class="list__item__header">
                                 <div>
-                                    <a href="rating?id=${rating.ratingID}">${rating.ratingName}</a>
-                                    <span>&nbsp;| ${rating.userNickname}</span>
+                                    <a href="rating?id=<%=rating.getRatingID()%>"><%=rating.getRatingName()%></a>
+                                    <span>&nbsp;| <%=rating.getUserNickname()%></span>
                                 </div>
-                                <span><fmt:formatDate value="${rating.ratingTime}" pattern="MM/dd HH:mm"/></span>
+                                <span><%=new SimpleDateFormat("MM/dd HH:mm").format(rating.getRatingTime())%></span>
                             </div>
                             <div class="list__item__content">
-                                <span>${rating.ratingClub}</span>
+                                <span><%=rating.getRatingClub()%></span>
                             </div>
                         </div>
                     </li>
-                </c:forEach>
+                <%}%>
+<%--                </c:forEach>--%>
             </ul>
         </div>
     </div>

@@ -1,6 +1,6 @@
 a{
 	text-decoration: none;
-	font-size: 25px;
+	font-size: 20px;
 	color:#18A0FB;
 	font-weight: 600;
 }
@@ -52,6 +52,8 @@ a{
 	width:100%;
 	max-width: 1000px;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin-left: auto;
 	margin-right: auto;
 }

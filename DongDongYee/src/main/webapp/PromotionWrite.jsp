@@ -26,7 +26,7 @@
     <label for="promotionClub">동아리명</label>
     <input type="text" id="promotionClub" name="promotionClub" required>
     <label for="promotionContents">본문</label>
-    <textarea name="promotionContents" id="promotionContents" cols="30" rows="10" required></textarea>
+    <textarea name="promotionContents" id="promotionContents" cols="30" rows="30" required></textarea>
     <input type="submit" value="작성">
 </form>
 <%} else {%>
@@ -37,7 +37,7 @@
     <label for="updatePromotionClub">동아리명</label>
     <input type="text" id="updatePromotionClub" name="promotionClub" value="<%=promotion.getPromotionClub()%>" required>
     <label for="updatePromotionContents">본문</label>
-    <textarea name="promotionContents" id="updatePromotionContents" cols="30" rows="10" required><%=promotion.getPromotionContents()%></textarea>
+    <textarea name="promotionContents" id="updatePromotionContents" cols="30" rows="30" required><%=promotion.getPromotionContents()%></textarea>
     <input type="submit" value="작성">
 </form>
 <%}%>

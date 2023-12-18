@@ -46,7 +46,7 @@ public class CommentService {
                 request.setCommentID(generatedKeys.getLong(1));
             }
 
-            sql = "SELECT CommentTime FROM DD_Comment WHERE CommentID = ?";
+            sql = "SELECT CommentTime FROM DD_COMMENT WHERE CommentID = ?";
             PreparedStatement pstmt2 = conn.prepareStatement(sql);
             pstmt2.setLong(1, request.getCommentID());
             rs = pstmt2.executeQuery();
@@ -88,7 +88,7 @@ public class CommentService {
     }
 
     public void delete(Long id) {
-        String sql = "DELETE FROM DD_Comment WHERE CommentID = ?";
+        String sql = "DELETE FROM DD_COMMENT WHERE CommentID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, id);
             pstmt.executeUpdate();
@@ -98,7 +98,7 @@ public class CommentService {
     }
 
     public void update(Comment comment) {
-        String sql = "UPDATE DD_Comment SET CommentContents=? WHERE CommentID=?";
+        String sql = "UPDATE DD_COMMENT SET CommentContents=? WHERE CommentID=?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, comment.getCommentContents());
             pstmt.executeUpdate();
