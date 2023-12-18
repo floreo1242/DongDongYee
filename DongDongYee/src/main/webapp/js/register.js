@@ -15,15 +15,23 @@ function checkAvailability(url, data, successMessage, successClass, errorMessage
 	});
 }
 
+function isValidEmail(email) {
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(email);
+}
+
 $(document).ready(function() {
 	$("#checkIdButton").click(function() {
 		let id = $("#id").val();
 		checkAvailability("domain.user.usercontroller.CheckIdServlet", { id: id }, "아이디가 사용 가능합니다", "available", "해당 아이디는 이미 사용중입니다", "not-available", ".register-form__id-message", "#id");
 	});
-
 	$("#checkEmailButton").click(function() {
 		let email = $("#email").val();
-		checkAvailability("domain.user.usercontroller.CheckEmailServlet", { email: email }, "이메일이 사용 가능합니다", "available", "해당 이메일은 이미 사용중입니다", "not-available", ".register-form__email-message", "#email");
+		if (isValidEmail(email)) {
+			checkAvailability("domain.user.usercontroller.CheckEmailServlet", { email: email }, "이메일이 사용 가능합니다", "available", "해당 이메일은 이미 사용중입니다", "not-available", ".register-form__email-message", "#email");
+		} else {
+			$(".register-form__email-message").text("유효한 이메일이어야 합니다.").removeClass("available").addClass("not-available");
+		}
 	});
 
 	$("#checkNicknameButton").click(function() {

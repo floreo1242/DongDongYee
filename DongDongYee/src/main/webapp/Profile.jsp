@@ -33,6 +33,7 @@
             </div>
         </tr>
     </table>
+    <br>
     <a href="signout.jsp" class="profile-link">회원탈퇴</a>
 </div>
 <jsp:include page="Footer.jsp"/>

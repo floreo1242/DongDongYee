@@ -35,7 +35,7 @@
 			<div class="register-form__password-message">메세지</div>
 			<label class="register-form__label" for="email">이메일</label>
 			<div class="register-form__input-with-button">
-				<input class="register-form__input" type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+				<input class="register-form__input" type="email" id="email" name="email" placeholder="이메일을 입력해주세요" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required>
 				<button class="register-form__button" id="checkEmailButton" type="button">중복확인</button>
 			</div>
 			<div class="register-form__email-message">메세지</div>
